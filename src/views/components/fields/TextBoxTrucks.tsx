@@ -29,7 +29,7 @@ export default function TextBoxTrucks() {
         <TextField
           required
           id="outlined-required"
-          label="Required"
+          label="Id"
         //   value={idValue}
         //   onChange={handleIdChange}
         //   inputProps={{maxLength:6}}
