@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +18,13 @@ const make = [
 ];
 
 export default function SelectFieldTrucks() {
+
+  // const [selectedMake, setSelectedMake] = useState('');
+
+
+
   return (
+
     <Box
       component="form"
       sx={{

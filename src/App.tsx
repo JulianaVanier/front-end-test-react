@@ -1,6 +1,5 @@
 import './App.css'
-import FormTrucks from './views/components/FormTrucks';
-import Header from './views/components/Header';
+import HeaderTrucks from './views/components/HeaderTrucks';
 import ListTrucks from './views/components/ListTrucks';
 import ServicesTrucks from './views/components/ServicesTrucks';
 
@@ -8,10 +7,9 @@ function App() {
   
   return (
     <>
-        <Header></Header>
-        {/* <ServicesTrucks></ServicesTrucks>
-        <ListTrucks></ListTrucks> */}
-        <FormTrucks></FormTrucks>
+        <HeaderTrucks></HeaderTrucks>
+        <ServicesTrucks></ServicesTrucks>
+        <ListTrucks></ListTrucks>        
     </>
   )
 }
