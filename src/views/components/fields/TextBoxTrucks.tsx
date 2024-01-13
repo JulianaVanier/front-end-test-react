@@ -1,11 +1,15 @@
-import * as React from "react";
+// import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import { Button } from "@mui/base";
+// import { useState } from "react";
+// import { Button } from "@mui/base";
+// import { InputProps } from "@mui/base";
+
+
 
 export default function TextBoxTrucks() {
-	const [idValue, setIdValue] = useState("");
+	// const [idValue, setIdValue] = useState("");
+	
 
 	// function handleSubmission() {
 	// 	// localStorage.clear();
@@ -37,10 +41,10 @@ export default function TextBoxTrucks() {
 			>
 				<TextField
 					required
-					id="outlined-required"
+					id="outlined-required-firstName"
 					label="Id"
-					value={idValue}
-					onChange={(e) => setIdValue(e.target.value)}
+					// value={idValue}
+					// onChange={(e) => setIdValue(e.target.value)}
 					inputProps={{ maxLength: 6 }}
 				/>
 			</Box>

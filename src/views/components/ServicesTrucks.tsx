@@ -1,14 +1,12 @@
-import { Button } from "@mui/base";
 import { Box } from "@mui/material";
 import DrawerTrucks from "./fields/containers/DrawerTrucks";
 
 export default function ServicesTrucks() {
-    return(
+    return (
         <>
-        <Box sx={{ width: '100%',  paddingTop:'0.3rem', paddingBottom:'0.3rem'}}>
-        <DrawerTrucks></DrawerTrucks>
-        {/* <Button variant="contained" sx={{ padding:'0.3rem' }}>Insert</Button> */}
-        </Box>
+            <Box sx={{ width: '100%', paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
+                <DrawerTrucks></DrawerTrucks>
+            </Box>
         </>
     );
 }
