@@ -50,9 +50,9 @@ function App() {
 		setListOfTrucks(trucksList.GetList());
 
 		// trucksList.RemoveTruck("345def");
-	},[setListOfTrucks]);
+	},[]);
 
-	trucksList.SetList(listOfTrucks);
+	// trucksList.SetList(listOfTrucks);
 	// console.log("result of setListOfTrucks get list", listOfTrucks);
 	// console.log("result of truckList GET", trucksList.GetList());
 
