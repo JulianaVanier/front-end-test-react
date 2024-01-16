@@ -93,7 +93,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 								<TableCell align="center">{item.isAvailable}</TableCell>
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
-									<Button>Edit</Button>
+									<Button >Edit</Button>
 									<Button onClick={() => { DeleteItem(item.id);}}>Delete</Button>
 								</TableCell>
 							</TableRow>

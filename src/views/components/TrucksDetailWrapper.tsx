@@ -21,6 +21,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { TruckList } from "../../services/TruckList";
+import { Truck } from "../../services/TruckList";
 
 
 
@@ -176,7 +177,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
 
     let trucksList: TruckList = new TruckList();
     trucksList.SetList([...listTrucks]);
-    let myTruck = trucksList.GetTruck("1234");
+    let myTruck: Truck;
 
 	const NewItem = (truck: any) => {
 		trucksList.AddTruck(truck);
@@ -188,10 +189,9 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
 		setListTrucks(trucksList.GetList());
 	};
 
-    // const LoadTruckById = (id: string) => {
-
-    //     return
-    // };
+    const LoadTruckById = (uniqueId: string): void => {
+        myTruck = trucksList.GetTruck(uniqueId);
+    };
 
     const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
     // const handleChange = (event: SelectChangeEvent) => {

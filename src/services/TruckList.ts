@@ -1,5 +1,5 @@
 
-type Truck = {
+export type Truck = {
     unique_id: string;
     make: string;
     id: string;
@@ -44,12 +44,12 @@ export class TruckList {
 
     }
 
-    private _findInList(idTruck: string): number {
+    private _findInList(uniqueId: string): number {
         let position: number = -1;
         
 
         for (let i: number = 0; i < this._list.length; i++) {
-            if (idTruck === this._list[i].unique_id) {
+            if (uniqueId === this._list[i].unique_id) {
                 // console.log(this._list[i].id);
                 position = i;
                 break;
@@ -73,8 +73,8 @@ export class TruckList {
     //     return true;
     // } 
 
-    GetTruck(idTruck: string): Truck | null {
-       let position: number = this._findInList(idTruck);
+    GetTruck(uniqueId: string): Truck | null {
+       let position: number = this._findInList(uniqueId);
 
        if(position === -1){
         console.log('Not found');
@@ -87,7 +87,7 @@ export class TruckList {
     }
 
 
-    RemoveTruck(idTruck: string): void {
+    RemoveTruck(uniqueId: string): void {
         // let position: number = -1;
 
         // this._list.forEach(function (truck, index) {
@@ -107,15 +107,15 @@ export class TruckList {
 
         // }
 
-        let position: number = this._findInList(idTruck);
+        let position: number = this._findInList(uniqueId);
 
         if (position === -1) {
-            console.log(idTruck, 'was not found');
+            console.log(uniqueId, 'was not found');
             return;
         }
 
         this._list.splice(position, 1);
-        console.log(idTruck, 'removed');
+        console.log(uniqueId, 'removed');
     }
 
     SetList(newList: Array<Truck>): void {
