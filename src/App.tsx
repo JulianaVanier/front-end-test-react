@@ -63,6 +63,7 @@ function App() {
 
 	useEffect(() => {
 		console.log("new list Inside useEffect", listOfTrucks);
+		storage.SetLocalStorageFromArray("Trucks", listOfTrucks);
 	}, [listOfTrucks]);
 
 
