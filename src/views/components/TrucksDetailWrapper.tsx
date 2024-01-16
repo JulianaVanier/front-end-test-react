@@ -209,7 +209,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
-        EditItem(data);
+        NewItem(data);
         alert(JSON.stringify(data));
 
         reset();

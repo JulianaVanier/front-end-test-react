@@ -1,5 +1,6 @@
 
 type Truck = {
+    unique_id: string;
     make: string;
     id: string;
     isAvailable: boolean;
@@ -15,6 +16,7 @@ export class TruckList {
     }
 
     AddTruck(newTruck: Truck): void {
+        newTruck.unique_id = Math.random().toString(36).substring(2, 9); //https://www.newline.co/books/beginners-guide-to-typescript/generating-unique-ids
         this._list.push(newTruck);
 
     }
@@ -31,10 +33,10 @@ export class TruckList {
         //     }
         // }
 
-        let position: number = this._findInList(truck.id);
+        let position: number = this._findInList(truck.unique_id);
 
         if (position === -1) {
-            console.log(truck.id, 'was not found');
+            console.log(truck.unique_id, 'was not found');
             return;
         }
 
@@ -47,7 +49,7 @@ export class TruckList {
         
 
         for (let i: number = 0; i < this._list.length; i++) {
-            if (idTruck === this._list[i].id) {
+            if (idTruck === this._list[i].unique_id) {
                 // console.log(this._list[i].id);
                 position = i;
                 break;
