@@ -7,13 +7,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import { Button } from "@mui/base";
-
+import { TruckList } from "../../services/TruckList";
 
 export default function ListTrucks({ list, setListOfTrucks }) {
 
 
 
-	// let trucksList: TruckList = new TruckList();
+	let trucksList: TruckList = new TruckList();
 	// let storage: LocalStorageManager = new LocalStorageManager();
 
 	// let list = storage.GetAsJSON("Trucks");
@@ -35,23 +35,29 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 	// }
 
-	const AddNewItemInList = () => {
-		const newList = [...list];
-		newList.push({
-			"make": "bolinha",
-			"id": "123abc",
-			"isAvailable": true,
-			"purchaseDate": "01/01/1999"
-		});
-		setListOfTrucks(newList); 
-		// setListOfTrucks([{
-		// 	"make": "Ovo",
-		// 	"id": "123abc",
-		// 	"isAvailable": true,
-		// 	"purchaseDate": "01/01/1999"
-		// }]);
-		// console.log("Funcao set list", setListOfTrucks);
+	// const AddNewItemInList = () => {
+	// 	const newList = [...list];
+	// 	newList.push({
+	// 		"make": "bolinha",
+	// 		"id": "123abc",
+	// 		"isAvailable": true,
+	// 		"purchaseDate": "01/01/1999"
+	// 	});
+	// 	setListOfTrucks(newList); 
+	// 	// setListOfTrucks([{
+	// 	// 	"make": "Ovo",
+	// 	// 	"id": "123abc",
+	// 	// 	"isAvailable": true,
+	// 	// 	"purchaseDate": "01/01/1999"
+	// 	// }]);
+	// 	// console.log("Funcao set list", setListOfTrucks);
 
+	// };
+
+	const DeleteItem = (id: string) => {
+		trucksList.SetList([...list]);
+		trucksList.RemoveTruck(id);
+		setListOfTrucks(trucksList.GetList());
 	};
 
 	return (
@@ -88,7 +94,7 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
 									<Button>Edit</Button>
-									<Button onClick={() => { AddNewItemInList();}}>Delete</Button>
+									<Button onClick={() => { DeleteItem(item.id);}}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}
