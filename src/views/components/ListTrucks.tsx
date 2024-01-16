@@ -36,12 +36,22 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 	// }
 
 	const AddNewItemInList = () => {
-		setListOfTrucks([{
-			"make": "Cartepillar",
+		const newList = [...list];
+		newList.push({
+			"make": "bolinha",
 			"id": "123abc",
 			"isAvailable": true,
 			"purchaseDate": "01/01/1999"
-		}]);
+		});
+		setListOfTrucks(newList); 
+		// setListOfTrucks([{
+		// 	"make": "Ovo",
+		// 	"id": "123abc",
+		// 	"isAvailable": true,
+		// 	"purchaseDate": "01/01/1999"
+		// }]);
+		// console.log("Funcao set list", setListOfTrucks);
+
 	};
 
 	return (
@@ -78,7 +88,7 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
 									<Button>Edit</Button>
-									<Button onClick={() => {console.log("lista bem aqui", item.id); AddNewItemInList();}}>Delete</Button>
+									<Button onClick={() => { AddNewItemInList();}}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}
