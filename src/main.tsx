@@ -6,7 +6,7 @@ import {
 	createBrowserRouter,
 	RouterProvider,
 } from "react-router-dom";
-import DrawerTrucks from './views/components/fields/containers/DrawerTrucks.tsx';
+// import DrawerTrucks from './views/components/fields/containers/DrawerTrucks.tsx';
 
 
 const router = createBrowserRouter([
@@ -14,10 +14,10 @@ const router = createBrowserRouter([
 		path: "/",
 		element: (<div><App/></div>),
 	},
-	{
-		path: "/create",
-		element: (<div><DrawerTrucks/></div>)
-	}
+	// {
+	// 	path: "/create",
+	// 	element: (<div><DrawerTrucks/></div>)
+	// }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

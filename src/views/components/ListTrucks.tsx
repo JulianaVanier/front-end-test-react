@@ -9,7 +9,9 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 
 
-export default function ListTrucks({obj, onDelete}) {
+export default function ListTrucks({ list, setListOfTrucks }) {
+
+
 
 	// let trucksList: TruckList = new TruckList();
 	// let storage: LocalStorageManager = new LocalStorageManager();
@@ -33,6 +35,15 @@ export default function ListTrucks({obj, onDelete}) {
 	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 	// }
 
+	const AddNewItemInList = () => {
+		setListOfTrucks([{
+			"make": "Cartepillar",
+			"id": "123abc",
+			"isAvailable": true,
+			"purchaseDate": "01/01/1999"
+		}]);
+	};
+
 	return (
 		<Box sx={{ width: "100%" }}>
 			<TableContainer component={Paper}>
@@ -54,20 +65,20 @@ export default function ListTrucks({obj, onDelete}) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{obj.map((obj: any) => (
+						{list.map((item: any) => (
 							<TableRow
-								key={obj.make}
+								key={item.make}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">
-									{obj.make}
+									{item.make}
 								</TableCell>
-								<TableCell align="center">{obj.id}</TableCell>
-								<TableCell align="center">{obj.isAvailable}</TableCell>
-								<TableCell align="center">{obj.purchaseDate}</TableCell>
+								<TableCell align="center">{item.id}</TableCell>
+								<TableCell align="center">{item.isAvailable}</TableCell>
+								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
 									<Button>Edit</Button>
-									<Button onClick={() => onDelete(obj.id)}>Delete</Button>
+									<Button onClick={() => {console.log("lista bem aqui", item.id); AddNewItemInList();}}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}

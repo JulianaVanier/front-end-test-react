@@ -15,9 +15,14 @@ interface Truck {
 
 function App() {
 
-	let trucksList: TruckList = new TruckList();
+	// let trucksList: TruckList = new TruckList();
 	let storage: LocalStorageManager = new LocalStorageManager();
-	let [listOfTrucks, setListOfTrucks] = useState<Truck[]>([]); 
+
+	// trucksList.SetList(storage.GetAsJSON("Trucks"));
+	const storedItems = storage.GetAsJSON("Trucks");
+	// let [listOfTrucks, setListOfTrucks] = useState<Truck[]>([]); 
+	let [listOfTrucks, setListOfTrucks] = useState(storedItems); 
+
 
 	// trucksList.SetList([{
 	// 	make: "Cartepillar",
@@ -41,16 +46,16 @@ function App() {
 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 
 
-	useEffect(() =>{
-		// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+	// useEffect(() =>{
+	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 
-		// let newListOfTrucks = storage.GetAsJSON("Trucks");
-		trucksList.SetList(storage.GetAsJSON("Trucks"));
+	// 	// let newListOfTrucks = storage.GetAsJSON("Trucks");
+	// 	trucksList.SetList(storage.GetAsJSON("Trucks"));
 
-		setListOfTrucks(trucksList.GetList());
+	// 	setListOfTrucks(trucksList.GetList());
 
-		// trucksList.RemoveTruck("345def");
-	},[]);
+	// 	// trucksList.RemoveTruck("345def");
+	// },[]);
 
 	// trucksList.SetList(listOfTrucks);
 	// console.log("result of setListOfTrucks get list", listOfTrucks);
@@ -61,27 +66,29 @@ function App() {
 	}, [listOfTrucks]);
 
 
-	const handleDelete = (id: any): void => {
 
-		// console.log("id", id);
 
-		trucksList.RemoveTruck(id);
-		console.log("new list after remove", trucksList.GetList());
-		setListOfTrucks(trucksList.GetList());
-		console.log("aqui tem que ter lista atualizada", listOfTrucks);
-		// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
-		// console.log("new list after remove", trucksList.GetList());
+	// const handleDelete = (id: any): void => {
 
-		// setListOfTrucks(trucksList.GetList());
+	// 	// console.log("id", id);
 
-		storage.SetLocalStorageFromArray("Trucks", listOfTrucks);
+	// 	trucksList.RemoveTruck(id);
+	// 	console.log("new list after remove", trucksList.GetList());
+	// 	setListOfTrucks(trucksList.GetList());
+	// 	console.log("aqui tem que ter lista atualizada", listOfTrucks);
+	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+	// 	// console.log("new list after remove", trucksList.GetList());
+
+	// 	// setListOfTrucks(trucksList.GetList());
+
+	// 	storage.SetLocalStorageFromArray("Trucks", listOfTrucks);
 		
-		// console.log("updatedList", listOfTrucks);
-		// setListOfTrucks(trucksList.GetList());
-		// storage.SetLocalStorageFromArray("Trucks", updatedList);
-		// console.log("no handleDelete", trucksList.GetList());
+	// 	// console.log("updatedList", listOfTrucks);
+	// 	// setListOfTrucks(trucksList.GetList());
+	// 	// storage.SetLocalStorageFromArray("Trucks", updatedList);
+	// 	// console.log("no handleDelete", trucksList.GetList());
 
-	};
+	// };
 
 
 	// console.log(listOfTrucks);
@@ -91,7 +98,7 @@ function App() {
 		<>
 			<HeaderTrucks></HeaderTrucks>
 			<ServicesTrucks></ServicesTrucks>
-			<ListTrucks obj={listOfTrucks} onDelete={handleDelete}></ListTrucks>
+			<ListTrucks list={listOfTrucks} setListOfTrucks={setListOfTrucks}></ListTrucks>
 		</>
 	)
 }
