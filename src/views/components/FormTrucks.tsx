@@ -1,6 +1,6 @@
 import SelectFieldTrucks from "./fields/SelectFieldTrucks";
 import SwitchTrucks from "./fields/SwitchTrucks";
-import { Box, Paper, Divider, Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import TextBoxTrucks from "./fields/TextBoxTrucks";
 import DatePickerTrucks from "./fields/DatePickerTrucks";
 

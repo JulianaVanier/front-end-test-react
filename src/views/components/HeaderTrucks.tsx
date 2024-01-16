@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material";
 
-export default function Header() {
+export default function HeaderTrucks() {
+
+
 	return (
 		<>
 			<Typography

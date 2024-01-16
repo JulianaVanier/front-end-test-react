@@ -1,0 +1,10 @@
+// -- TODO move both files into the project 
+// -- Inside app function add the new classe, inside the variable truckslist
+// -- Add manually to new trucks data
+// -- To create a new variable called storage using the LocalSTograge class
+// -- Add the list into the the storage using the key "trucks"
+// -- To check if the data has been saved into the storage
+// -- Try to pass (as prop maybe) to the component the trucks variable
+// -- Inside the component which display the trucks, try to see if receiving the data.
+
+https://stackoverflow.com/questions/60915262/how-to-pass-function-as-props-from-functional-parent-component-to-child

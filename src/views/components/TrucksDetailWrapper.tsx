@@ -3,7 +3,7 @@ import DrawerTrucksAction from "./fields/containers/DrawerTrucksAction";
 // import SelectFieldTrucks from "./fields/SelectFieldTrucks";
 import SwitchTrucks from "./fields/SwitchTrucks";
 import { Box, Paper, Divider, Grid } from "@mui/material";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // import type {
 //     SubmitHandler,
 //     DefaultValues
@@ -147,8 +147,8 @@ import dayjs, { Dayjs } from 'dayjs';
 type FormValues = {
     typeMake: string
     id: string
-    selectMake: { label: string; value: string }
-    datePurchase: string
+    make: { label: string; value: string }
+    purchaseDate: string
 }
 
 const resolver: Resolver<FormValues> = async (values) => {
@@ -173,7 +173,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function TurcksDetailWrapper() {
 
-    const [datePurchase, setDatePurchase] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
+    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
     // const handleChange = (event: SelectChangeEvent) => {
     //     console.log(event.target.value as string);
     //   };
@@ -187,9 +187,10 @@ export default function TurcksDetailWrapper() {
     } = useForm<FormValues>({ resolver })
 
     const onSubmit = handleSubmit((data) => {
-
+        // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
         alert(JSON.stringify(data));
+
         reset();
     });
 
@@ -233,7 +234,7 @@ export default function TurcksDetailWrapper() {
                                     noValidate
                                     autoComplete="off"
                                 >
-                                    <Select required label="selectMake"  {...register("selectMake")} >
+                                    <Select required label="make"  {...register("make")} >
                                         <MenuItem value={"cartepillar"}>Cartepillar</MenuItem>
                                         <MenuItem value={"belaz"}>Belaz</MenuItem>
                                         <MenuItem value={"Komatsu"}>Komatsu</MenuItem>
@@ -267,7 +268,7 @@ export default function TurcksDetailWrapper() {
                                     >
                                         <DemoItem label="Responsive variant">
                                             {/* <DatePicker   {...register("datePurchase")} /> */}
-                                            <DatePicker value={datePurchase} {...register("datePurchase")} onChange={(newValue) => setDatePurchase(newValue)}/>
+                                            <DatePicker value={purchaseDate} {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)}/>
 
                                         </DemoItem>
                                     </DemoContainer>

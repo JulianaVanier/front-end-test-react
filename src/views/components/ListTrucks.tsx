@@ -1,4 +1,3 @@
-import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,39 +9,29 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 
 
-export default function BasicTable() {
+export default function ListTrucks({obj, onDelete}) {
 
-	// function userInfo() {
-	//   const savedItem = localStorage.getItem("userInfo");
-	//   const parsedItem = JSON.parse(savedItem);
-	//   return parsedItem || "";
+	// let trucksList: TruckList = new TruckList();
+	// let storage: LocalStorageManager = new LocalStorageManager();
+
+	// let list = storage.GetAsJSON("Trucks");
+
+
+	// function deleteItem(id: string){
+	// 	// trucksListprop.AddTruck({
+	// 	// 	make: "do teste",
+	// 	// 	id: "123abc",
+	// 	// 	isAvailable: true,
+	// 	// 	purchaseDate: "01/01/1999"	
+	// 	// })
+
+	// 	trucksList.SetList(list);
+	// 	trucksList.RemoveTruck(id);
+	// 	// let newNewList = trucksList.GetList();
+
+	// 	console.log("list", trucksList.GetList());
+	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 	// }
-
-	// const [userInfo, setUserInfo] = useState(() => {
-	//   const savedItem = localStorage.getItem("userInfo");
-	//   const parsedItem = JSON.parse(savedItem);
-	//   return parsedItem || "";
-	// });
-
-	// useEffect(() => {
-	//   userInfo();
-	// }, []);
-
-	function createData(
-		make: string,
-		id: string,
-		isAvailable: string,
-		purchaseDate: string
-	) {
-		return { make, id, isAvailable, purchaseDate };
-	}
-
-	const rows = [
-		createData("Cartepillar", "vlc123", "yes", "24200101"),
-		createData("Cartepillar", "vlc123", "yes", "24200101"),
-		createData("Belaz", "vlc123", "yes", "24200101"),
-		createData("Komatsu", "vlc123", "no", "24200102"),
-	];
 
 	return (
 		<Box sx={{ width: "100%" }}>
@@ -65,20 +54,20 @@ export default function BasicTable() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row) => (
+						{obj.map((obj: any) => (
 							<TableRow
-								key={row.make}
+								key={obj.make}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">
-									{row.make}
+									{obj.make}
 								</TableCell>
-								<TableCell align="center">{row.id}</TableCell>
-								<TableCell align="center">{row.isAvailable}</TableCell>
-								<TableCell align="center">{row.purchaseDate}</TableCell>
+								<TableCell align="center">{obj.id}</TableCell>
+								<TableCell align="center">{obj.isAvailable}</TableCell>
+								<TableCell align="center">{obj.purchaseDate}</TableCell>
 								<TableCell align="center">
 									<Button>Edit</Button>
-									<Button>Delete</Button>
+									<Button onClick={() => onDelete(obj.id)}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}
