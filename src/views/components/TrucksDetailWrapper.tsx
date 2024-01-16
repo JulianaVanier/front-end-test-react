@@ -20,6 +20,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import { TruckList } from "../../services/TruckList";
 
 
 
@@ -171,7 +172,26 @@ const resolver: Resolver<FormValues> = async (values) => {
 }
 
 
-export default function TurcksDetailWrapper() {
+export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
+
+    let trucksList: TruckList = new TruckList();
+    trucksList.SetList([...listTrucks]);
+    let myTruck = trucksList.GetTruck("1234");
+
+	const NewItem = (truck: any) => {
+		trucksList.AddTruck(truck);
+		setListTrucks(trucksList.GetList());
+	};
+
+    const EditItem = (truck: any) => {
+		trucksList.EditTruck(truck);
+		setListTrucks(trucksList.GetList());
+	};
+
+    // const LoadTruckById = (id: string) => {
+
+    //     return
+    // };
 
     const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
     // const handleChange = (event: SelectChangeEvent) => {
@@ -189,6 +209,7 @@ export default function TurcksDetailWrapper() {
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
+        EditItem(data);
         alert(JSON.stringify(data));
 
         reset();
@@ -253,6 +274,7 @@ export default function TurcksDetailWrapper() {
                                     <TextField
                                         required
                                         label="Id"
+                                        value={myTruck.id}
                                         {...register("id")}
                                     />
                                 </Box>

@@ -5,7 +5,7 @@ import TrucksDetailWrapper from "../../TrucksDetailWrapper";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-export default function DrawerTrucks() {
+export default function DrawerTrucks({ listTrucks, setListTrucks }) {
 	const [state, setState] = React.useState({
 		top: false,
 		left: false,
@@ -39,7 +39,7 @@ export default function DrawerTrucks() {
 						open={state[anchor]}
 						onClose={toggleDrawer(anchor, false)}
 					>
-						<TrucksDetailWrapper></TrucksDetailWrapper>
+						<TrucksDetailWrapper listTrucks={listTrucks} setListTrucks={setListTrucks}></TrucksDetailWrapper>
 					</Drawer>
 				</React.Fragment>
 			))}

@@ -71,22 +71,19 @@ export class TruckList {
     //     return true;
     // } 
 
-    IsItemInList(idTruck:string): boolean{
+    GetTruck(idTruck: string): Truck | null {
        let position: number = this._findInList(idTruck);
 
        if(position === -1){
-        console.log(idTruck, 'false');
-        return false;
+        console.log('Not found');
+        return null;
        } 
        
-        console.log(idTruck, 'true');
-        return true;
+        // console.log('idTruck, 'true'');
+        return this._list[position];
         
     }
 
-    PrintList(): string {
-        return `Make: ${JSON.stringify(this._list)}`
-    }
 
     RemoveTruck(idTruck: string): void {
         // let position: number = -1;

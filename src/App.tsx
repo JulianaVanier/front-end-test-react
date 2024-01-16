@@ -98,7 +98,7 @@ function App() {
 	return (
 		<>
 			<HeaderTrucks></HeaderTrucks>
-			<ServicesTrucks listTrucks={listTrucks}></ServicesTrucks>
+			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ServicesTrucks>
 			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
 		</>
 	)
