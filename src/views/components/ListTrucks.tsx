@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckList } from "../../services/TruckList";
 
-export default function ListTrucks({ list, setListOfTrucks }) {
+export default function ListTrucks({ listTrucks, setListTrucks }) {
 
 
 
@@ -55,9 +55,9 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 	// };
 
 	const DeleteItem = (id: string) => {
-		trucksList.SetList([...list]);
+		trucksList.SetList([...listTrucks]);
 		trucksList.RemoveTruck(id);
-		setListOfTrucks(trucksList.GetList());
+		setListTrucks(trucksList.GetList());
 	};
 
 	return (
@@ -81,7 +81,7 @@ export default function ListTrucks({ list, setListOfTrucks }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{list.map((item: any) => (
+						{listTrucks.map((item: any) => (
 							<TableRow
 								key={item.make}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

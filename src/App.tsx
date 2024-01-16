@@ -21,7 +21,7 @@ function App() {
 	// trucksList.SetList(storage.GetAsJSON("Trucks"));
 	const storedItems = storage.GetAsJSON("Trucks");
 	// let [listOfTrucks, setListOfTrucks] = useState<Truck[]>([]); 
-	let [listOfTrucks, setListOfTrucks] = useState(storedItems); 
+	let [listTrucks, setListTrucks] = useState(storedItems); 
 
 
 	// trucksList.SetList([{
@@ -62,9 +62,9 @@ function App() {
 	// console.log("result of truckList GET", trucksList.GetList());
 
 	useEffect(() => {
-		console.log("new list Inside useEffect", listOfTrucks);
-		storage.SetLocalStorageFromArray("Trucks", listOfTrucks);
-	}, [listOfTrucks]);
+		console.log("new list Inside useEffect", listTrucks);
+		storage.SetLocalStorageFromArray("Trucks", listTrucks);
+	}, [listTrucks]);
 
 
 
@@ -98,8 +98,8 @@ function App() {
 	return (
 		<>
 			<HeaderTrucks></HeaderTrucks>
-			<ServicesTrucks></ServicesTrucks>
-			<ListTrucks list={listOfTrucks} setListOfTrucks={setListOfTrucks}></ListTrucks>
+			<ServicesTrucks listTrucks={listTrucks}></ServicesTrucks>
+			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
 		</>
 	)
 }
