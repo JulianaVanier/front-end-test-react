@@ -96,22 +96,38 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     //     console.log(event.target.value as string);
     //   };
 
+    const makeValues = [
+        {
+            value: 'belaz',
+            label: 'Belaz',
+        },
+        {
+            value: 'cartepillar',
+            label: 'Cartepillar',
+        },
+        {
+            value: 'komatsu',
+            label: 'Komatsu',
+        }
+    ];
 
 
 
     const {
-        register, 
+        register,
         handleSubmit,
         formState: { errors },
         reset,
         control,
-    } = useForm<FormValues>({ resolver, 
+    } = useForm<FormValues>({
+        resolver,
         defaultValues: {
-            make: 'Belaz',
+            make: 'komatsu',
             id: '12345',
             purchaseDate: '01/17/2024'
-      }})
-    
+        }
+    })
+
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
@@ -171,12 +187,40 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                     noValidate
                                     autoComplete="off"
                                 >
-                                    
-                                    <Select required label="make"  {...register("make")} >
+
+                                    {/* <TextField
+                                        id="make"
+                                        select
+                                        label="Make"
+                                        // defaultValue=""
+                                    >
+                                        {makeValues.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField> */}
+                                    <TextField
+                                        id="make"
+                                        select
+                                        label="Make"
+                                        defaultValue=""
+                                        SelectProps={{
+                                            native: true,
+                                        }}
+                                    >
+                                        {makeValues.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </TextField>
+
+                                    {/* <Select required label="make"  {...register("make")} >
                                         <MenuItem value={"cartepillar"}>Cartepillar</MenuItem>
                                         <MenuItem value={"belaz"}>Belaz</MenuItem>
                                         <MenuItem value={"Komatsu"}>Komatsu</MenuItem>
-                                    </Select>
+                                    </Select> */}
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
@@ -192,7 +236,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                         required
                                         label="Id"
                                         // value={myTruck.id}
-                                        {...register('id',  { required: true, maxLength: 6 })}
+                                        {...register('id', { required: true, maxLength: 6 })}
                                     />
                                 </Box>
                             </Grid>
@@ -205,9 +249,9 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                         'DatePicker'
                                     ]}
                                 >
-                                    <DemoItem label="Responsive variant">
+                                    <DemoItem>
                                         {/* <DatePicker   {...register("datePurchase")} /> */}
-                                        <DatePicker value={purchaseDate} {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)} />
+                                        <DatePicker value={purchaseDate} label="Purchase Date" {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)} />
 
                                     </DemoItem>
                                 </DemoContainer>
