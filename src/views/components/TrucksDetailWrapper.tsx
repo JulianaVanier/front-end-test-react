@@ -27,135 +27,12 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Switch from '@mui/material/Switch';
+import { Control } from "react-hook-form";
 
-
-
-
-
-
-// useEffect(() => {
-//   localStorage.setItem("dataTruck", JSON.stringify(name));
-// }, [dataTruck]);
-
-
-
-
-// export type FormValues = {
-//     TextField: string;
-//     // Datepicker: Date;
-//     // ReactSelect: NestedValue<{ value: string; label: string }>;
-// };
-
-// export const defaultValues: DefaultValues<FormValues> = {
-//     TextField: "",
-//     // Datepicker: new Date(),
-//     // ReactSelect: { value: "cartepillar", label: "Cartepillar" },
-// };
-
-
-
-// export default function TurcksDetailWrapper() {
-
-//     const {
-//         handleSubmit,
-//         register,
-//         reset,
-//         control,
-//         formState: { errors }
-//     } = useForm<FormValues>({
-//         defaultValues
-//     });
-
-//     const onSubmit: SubmitHandler<FormValues> = (data) =>
-//         alert(JSON.stringify(data));
-
-//     // console.log(errors);
-
-//     // const onSubmit = handleSubmit((data) => console.log(data))
-
-//     // const cloneWithRegister = (child: React.ReactElement) =>
-//     // React.cloneElement(child,{register});
-
-//     return (
-//         <>
-//             <DrawerTrucksHeader />
-
-//             <form onSubmit={handleSubmit(onSubmit)}>
-//                 <Box
-//                     display={"flex"}
-//                     height={"100%"}
-//                     flexDirection={"column"}
-//                     justifyContent={"space-between"}
-//                 >
-//                     <Paper
-//                         sx={{
-//                             p: "30px",
-//                             // width: "100%",
-//                             height: "20rem",
-//                             overflowY: "auto",
-//                             flexGrow: 1,
-//                         }}
-//                     >
-//                         <SwitchTrucks />
-
-//                         <Divider sx={{ fontWeight: "bold" }}>Informations</Divider>
-//                         <Grid container spacing={2}>
-//                             <Grid item xs={6}>
-//                                 <SelectFieldTrucks />
-//                             </Grid>
-//                             <Grid item xs={6}>
-//                                 <Box
-//                                     component="form"
-//                                     sx={{
-//                                         "& .MuiTextField-root": { m: 1, width: "25ch" },
-//                                     }}
-//                                     noValidate
-//                                     autoComplete="off"
-//                                 >
-//                                     <Controller
-//                                         render={({ field }) => <TextField {...field} />}
-//                                         name="TextField"
-//                                         control={control}
-//                                     />
-//                                 </Box>
-//                             </Grid>
-//                         </Grid>
-//                         <Grid container spacing={2}>
-//                             <Grid item xs={6}>
-//                                 {/* <Controller
-//                                     control={control}
-//                                     name="Datepicker"
-//                                     render={({ field: { value, ...fieldProps } }) => {
-//                                         return (
-//                                             <DatePicker
-//                                                 {...fieldProps}
-//                                                 className="input"
-//                                                 // placeholderText="Select date"
-//                                                 // selected={value}
-//                                             />
-//                                         );
-//                                     }}
-//                                 /> */}
-//                             </Grid>
-//                             <Grid item xs={6}></Grid>
-//                         </Grid>
-//                     </Paper>
-//                 </Box>
-
-//                 <DrawerTrucksAction />
-//             </form>
-
-//         </>
-//     );
-// }
-
-
-// *****************************
 
 type FormValues = {
-    typeMake: string
-    id: string
-    make: { label: string; value: string }
+    id: string,
+    make: string,
     purchaseDate: string
 }
 
@@ -181,6 +58,8 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
 
+
+    // React Hook Form
     const [state, setState] = React.useState({
         isAvailable: true,
     });
@@ -191,6 +70,8 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
             [event.target.name]: event.target.checked,
         });
     };
+    // ******************************************************
+
 
     let trucksList: TruckList = new TruckList();
     trucksList.SetList([...listTrucks]);
@@ -210,18 +91,26 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     //     myTruck = trucksList.GetTruck(uniqueId);
     // };
 
-    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs(''));
+    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs());
     // const handleChange = (event: SelectChangeEvent) => {
     //     console.log(event.target.value as string);
     //   };
+
+
+
 
     const {
         register, 
         handleSubmit,
         formState: { errors },
         reset,
-        // control,
-    } = useForm<FormValues>({ resolver })
+        control,
+    } = useForm<FormValues>({ resolver, 
+        defaultValues: {
+            make: 'Belaz',
+            id: '12345',
+            purchaseDate: '01/17/2024'
+      }})
     
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
@@ -282,6 +171,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                     noValidate
                                     autoComplete="off"
                                 >
+                                    
                                     <Select required label="make"  {...register("make")} >
                                         <MenuItem value={"cartepillar"}>Cartepillar</MenuItem>
                                         <MenuItem value={"belaz"}>Belaz</MenuItem>

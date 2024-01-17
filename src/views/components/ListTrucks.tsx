@@ -61,12 +61,12 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 		setListTrucks(trucksList.GetList());
 	};
 
-	// const EditItem = (truck: any) => {
-	// 	console.log(truck);
-    //     trucksList.EditTruck(truck);
-    //     setListTrucks(trucksList.GetList());
-	// 	console.log("list aquiiii",listTrucks);
-    // };
+	const EditItem = (truck: any) => {
+		console.log(truck);
+        trucksList.EditTruck(truck);
+        setListTrucks(trucksList.GetList());
+		console.log("list aquiiii",listTrucks);
+    };
 
 	return (
 		<Box sx={{ width: "100%" }}>

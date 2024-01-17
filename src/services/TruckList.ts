@@ -50,13 +50,13 @@ export class TruckList {
 
     private _findInList(uniqueId: string): number {
         let position: number = -1;
-        console.log("inside FINDINLIST",uniqueId);
-        console.log("truck unique ID inside FINDINLIST",this._list.length);
+        // console.log("inside FINDINLIST",uniqueId);
+        // console.log("truck unique ID inside FINDINLIST",this._list.length);
 
         for (let i: number = 0; i < this._list.length; i++) {
             if (uniqueId === this._list[i].unique_id) {
-                console.log("inside FINDINLIST",uniqueId);
-                console.log("truck unique ID inside FINDINLIST",this._list[i].unique_id);
+                // console.log("inside FINDINLIST",uniqueId);
+                // console.log("truck unique ID inside FINDINLIST",this._list[i].unique_id);
                 position = i;
                 break;
             }
