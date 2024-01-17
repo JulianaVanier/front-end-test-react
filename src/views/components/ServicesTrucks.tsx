@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
 import DrawerTrucks from "./fields/containers/DrawerTrucks";
 
+// type DrawerTrucksActionProps = {
+// 	onSave:()=>void,
+// }
+
 export default function ServicesTrucks({ listTrucks, setListTrucks }) {
     return (
         <>

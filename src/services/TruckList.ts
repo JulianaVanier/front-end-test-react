@@ -8,7 +8,7 @@ export type Truck = {
 };
 
 
-export class TruckList {
+export class TruckClass {
     private _list: Array<Truck>;
 
     constructor() {

@@ -4,9 +4,6 @@ import { Divider, Grid } from "@mui/material";
 import TextBoxTrucks from "./fields/TextBoxTrucks";
 import DatePickerTrucks from "./fields/DatePickerTrucks";
 
-// useEffect(() => {
-//   localStorage.setItem("dataTruck", JSON.stringify(name));
-// }, [dataTruck]);
 
 export default function FormTrucks() {
 	return (

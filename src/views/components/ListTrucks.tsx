@@ -7,52 +7,27 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import { Button } from "@mui/base";
-import { TruckList } from "../../services/TruckList";
+import { TruckClass } from "../../services/TruckList";
+
+type Truck = {
+	unique_id: string;
+    isAvailable: boolean,
+    id: string,
+    make: string,
+    purchaseDate: string,
+}
 
 export default function ListTrucks({ listTrucks, setListTrucks }) {
 
 
 
-	let trucksList: TruckList = new TruckList();
+	let trucksList: TruckClass = new TruckClass();
 	// let storage: LocalStorageManager = new LocalStorageManager();
 
 	// let list = storage.GetAsJSON("Trucks");
 
 
-	// function deleteItem(id: string){
-	// 	// trucksListprop.AddTruck({
-	// 	// 	make: "do teste",
-	// 	// 	id: "123abc",
-	// 	// 	isAvailable: true,
-	// 	// 	purchaseDate: "01/01/1999"	
-	// 	// })
 
-	// 	trucksList.SetList(list);
-	// 	trucksList.RemoveTruck(id);
-	// 	// let newNewList = trucksList.GetList();
-
-	// 	console.log("list", trucksList.GetList());
-	// 	// storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
-	// }
-
-	// const AddNewItemInList = () => {
-	// 	const newList = [...list];
-	// 	newList.push({
-	// 		"make": "bolinha",
-	// 		"id": "123abc",
-	// 		"isAvailable": true,
-	// 		"purchaseDate": "01/01/1999"
-	// 	});
-	// 	setListOfTrucks(newList); 
-	// 	// setListOfTrucks([{
-	// 	// 	"make": "Ovo",
-	// 	// 	"id": "123abc",
-	// 	// 	"isAvailable": true,
-	// 	// 	"purchaseDate": "01/01/1999"
-	// 	// }]);
-	// 	// console.log("Funcao set list", setListOfTrucks);
-
-	// };
 
 	const DeleteItem = (unique_id: string) => {
 		console.log(unique_id);
@@ -61,7 +36,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 		setListTrucks(trucksList.GetList());
 	};
 
-	const EditItem = (truck: any) => {
+	const EditItem = (truck: Truck) => {
 		console.log(truck);
         trucksList.EditTruck(truck);
         setListTrucks(trucksList.GetList());
@@ -73,14 +48,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
-						<TableRow
-							// sx={{
-							// 	"&:first-child td, &:first-child th": {
-							// 		bgcolor: "primary.main",
-							// 		color: "background.paper",
-							// 	},
-							// }}
-						>
+						<TableRow>
 							<TableCell sx={{ color: "white" }}>Make</TableCell>
 							<TableCell align="center">Id</TableCell>
 							<TableCell align="center">Is Available</TableCell>
@@ -89,7 +57,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{listTrucks.map((item: any) => (
+						{listTrucks.map((item: Truck) => (
 							<TableRow
 								key={item.unique_id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
