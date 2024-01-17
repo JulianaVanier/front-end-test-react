@@ -74,12 +74,12 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow
-							sx={{
-								"&:first-child td, &:first-child th": {
-									bgcolor: "primary.main",
-									color: "background.paper",
-								},
-							}}
+							// sx={{
+							// 	"&:first-child td, &:first-child th": {
+							// 		bgcolor: "primary.main",
+							// 		color: "background.paper",
+							// 	},
+							// }}
 						>
 							<TableCell sx={{ color: "white" }}>Make</TableCell>
 							<TableCell align="center">Id</TableCell>
@@ -91,7 +91,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 					<TableBody>
 						{listTrucks.map((item: any) => (
 							<TableRow
-								key={item.make}
+								key={item.unique_id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">

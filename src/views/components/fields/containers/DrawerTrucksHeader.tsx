@@ -10,8 +10,8 @@ export default function DrawerTrucksHeader() {
 			<Toolbar variant="dense">
 				<Typography variant="h6">Truck</Typography>
 				<Box sx={{ flexGrow: 1 }} />
-				<IconButton>
-					<HighlightOffIcon onClick={onClose} />
+				<IconButton onClick={onClose}>
+					<HighlightOffIcon  />
 				</IconButton>
 			</Toolbar>
 		</AppBar>

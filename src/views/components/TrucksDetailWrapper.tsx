@@ -28,12 +28,20 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Switch from '@mui/material/Switch';
 import { Control } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { Button } from "@mui/base";
+
+
+
+
 
 
 type FormValues = {
+    isAvailable: boolean,
     id: string,
     make: string,
-    purchaseDate: string
+    purchaseDate: string,
 }
 
 const resolver: Resolver<FormValues> = async (values) => {
@@ -59,17 +67,17 @@ const resolver: Resolver<FormValues> = async (values) => {
 export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
 
 
-    // React Hook Form
-    const [state, setState] = React.useState({
-        isAvailable: true,
-    });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState({
-            ...state,
-            [event.target.name]: event.target.checked,
-        });
-    };
+    // const [state, setState] = React.useState({
+    //     isAvailable: true,
+    // });
+
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setState({
+    //         ...state,
+    //         [event.target.name]: event.target.checked,
+    //     });
+    // };
     // ******************************************************
 
 
@@ -78,6 +86,9 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     // let myTruck: Truck;
 
     const NewItem = (truck: any) => {
+
+        console.log('truck', truck)
+
         trucksList.AddTruck(truck);
         setListTrucks(trucksList.GetList());
     };
@@ -91,7 +102,12 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     //     myTruck = trucksList.GetTruck(uniqueId);
     // };
 
-    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs());
+    // const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs());
+    // const [purchaseDate, setDatePurchase] = React.useState(null);
+
+
+
+
     // const handleChange = (event: SelectChangeEvent) => {
     //     console.log(event.target.value as string);
     //   };
@@ -123,10 +139,21 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
         resolver,
         defaultValues: {
             make: 'komatsu',
+            isAvailable: true,
             id: '12345',
-            purchaseDate: '01/17/2024'
+            purchaseDate: '',
         }
     })
+
+    // const save = (data) => {
+    //     // console.log(data);
+    //     // localStorage.setItem("formData", JSON.stringify(data));
+    //     NewItem(data);
+    //     console.log("data insert", data);
+    //     // alert(JSON.stringify(data));
+
+    //     reset();
+    // };
 
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
@@ -164,42 +191,18 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                             flexGrow: 1,
                         }}
                     >
-                        <FormControl component="fieldset" variant="standard">
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={
-                                        <Switch checked={state.isAvailable} onChange={handleChange} name="isAvailable" />
-                                    }
-                                    label="Is Available"
-                                />
-                            </FormGroup>
-                        </FormControl>
-
+                        <Controller
+                            name="isAvailable"
+                            control={control}
+                            render={({ field: { value } }) => (                        
+                                <Switch checked={value} {...register('isAvailable')} name="isAvailable" />
+                            )}
+                        />
                         <Divider sx={{ fontWeight: "bold" }}>Informations</Divider>
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid item xs={6}>
                                 {/* <SelectFieldTrucks /> */}
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        "& .MuiTextField-root": { m: 1, width: "25ch" },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-
-                                    {/* <TextField
-                                        id="make"
-                                        select
-                                        label="Make"
-                                        // defaultValue=""
-                                    >
-                                        {makeValues.map((option) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField> */}
+                                <Box>
                                     <TextField
                                         id="make"
                                         select
@@ -208,6 +211,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                         SelectProps={{
                                             native: true,
                                         }}
+                                        {...register('make')}
                                     >
                                         {makeValues.map((option) => (
                                             <option key={option.value} value={option.value}>
@@ -215,23 +219,10 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                             </option>
                                         ))}
                                     </TextField>
-
-                                    {/* <Select required label="make"  {...register("make")} >
-                                        <MenuItem value={"cartepillar"}>Cartepillar</MenuItem>
-                                        <MenuItem value={"belaz"}>Belaz</MenuItem>
-                                        <MenuItem value={"Komatsu"}>Komatsu</MenuItem>
-                                    </Select> */}
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        "& .MuiTextField-root": { m: 1, width: "25ch" },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
+                                <Box>
                                     <TextField
                                         required
                                         label="Id"
@@ -244,25 +235,21 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                         {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
                         <Grid item xs={6}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DemoContainer
-                                    components={[
-                                        'DatePicker'
-                                    ]}
-                                >
-                                    <DemoItem>
-                                        {/* <DatePicker   {...register("datePurchase")} /> */}
-                                        <DatePicker value={purchaseDate} label="Purchase Date" {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)} />
-
-                                    </DemoItem>
-                                </DemoContainer>
+                                <Controller
+                                    name="purchaseDate"
+                                    control={control}
+                                    render={({ field: { value, onChange } }) => (
+                                        <DatePicker value={value} label="Purchase Date" onChange={onChange} />
+                                    )}
+                                />
                             </LocalizationProvider>
                         </Grid>
                         <Grid item xs={6}></Grid>
                         {/* </Grid> */}
                     </Paper>
                 </Box>
-
-                <DrawerTrucksAction />
+                <DrawerTrucksAction/>
+                {/* <DrawerTrucksAction onSave={save} /> */}
             </form>
 
         </>
