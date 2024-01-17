@@ -2,8 +2,6 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
-import { Box } from "@mui/material";
-
 
 export default function DrawerTrucks({ listTrucks, setListTrucks }) {
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);

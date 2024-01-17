@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 function onClose() { }
 
 export default function DrawerTrucksHeader() {
+	
 	return (
 		<AppBar position="static">
 			<Toolbar variant="dense">

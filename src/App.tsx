@@ -12,27 +12,17 @@ type Truck =  {
     purchaseDate: string;
 };
 
-
 function App() {
 
-	// let trucksList: TruckList = new TruckList();
 	const storage: LocalStorageManager = new LocalStorageManager();
 
-	// trucksList.SetList(storage.GetAsJSON("Trucks"));
 	const storedTrucks = storage.GetAsJSON("Trucks");
-	// let [listOfTrucks, setListOfTrucks] = useState<Truck[]>([]); 
 	const [listTrucks, setListTrucks] = useState<Truck[]>(storedTrucks || []); 
-
-
-
 
 	useEffect(() => {
 		console.log("new list Inside useEffect", listTrucks);
 		storage.SetLocalStorageFromArray("Trucks", listTrucks);
 	}, [listTrucks, storage]);
-
-
-
 
 	return (
 		<>

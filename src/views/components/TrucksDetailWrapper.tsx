@@ -7,7 +7,7 @@ import { Resolver } from "react-hook-form";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TruckClass } from "../../services/TruckList";
+import { Truck, TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
@@ -22,6 +22,8 @@ type FormValues = {
     make: string,
     purchaseDate: string,
 }
+
+
 
 const resolver: Resolver<FormValues> = async (values) => {
     // return {
@@ -60,11 +62,11 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
     // ******************************************************
 
 
-    let trucksList: TruckClass = new TruckClass();
+    const trucksList: TruckClass = new TruckClass();
     trucksList.SetList([...listTrucks]);
     // let myTruck: Truck;
 
-    const NewItem = (truck: any) => {
+    const NewItem = (truck: Truck) => {
 
         console.log('truck', truck)
 
@@ -124,7 +126,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
         }
     })
 
-    const save = (data) => {
+    const save = (data: Truck) => {
         console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
         NewItem(data);
@@ -136,7 +138,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
         // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
         NewItem(data);
-        console.log("data insert", data);
+        console.log("data insert",data);
         reset();
     });
 
@@ -169,7 +171,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                         <Controller
                             name="isAvailable"
                             control={control}
-                            render={({ field: { value } }) => (                        
+                            render={({ field: { value } }) => (
                                 <Switch checked={value} {...register('isAvailable')} name="isAvailable" />
                             )}
                         />
@@ -222,19 +224,19 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                     </Paper>
                 </Box>
                 <AppBar position="static">
-			<Toolbar variant="dense">
-				<Button variant="contained" type="button">Cancel</Button>
-				<Box sx={{ display: 'flex', flexDirection: 'row', p: 1, m: 1 }} />
-				{/* <Button variant="contained" type="submit" onClick={props.onSave}>Save</Button> */}
-				<Button 
-                    variant="contained" 
-                    type="submit"  
-                    onClick={handleSubmit((data)=> save(data))}
-                >
-                    Save
-                </Button>
-			</Toolbar>
-		</AppBar>
+                    <Toolbar variant="dense">
+                        <Button variant="contained" type="button">Cancel</Button>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', p: 1, m: 1 }} />
+                        {/* <Button variant="contained" type="submit" onClick={props.onSave}>Save</Button> */}
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={handleSubmit((data) => save(data))}
+                        >
+                            Save
+                        </Button>
+                    </Toolbar>
+                </AppBar>
                 {/* <DrawerTrucksAction onSave={save} /> */}
             </form>
 

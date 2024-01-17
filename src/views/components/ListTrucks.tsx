@@ -19,29 +19,26 @@ type Truck = {
 
 export default function ListTrucks({ listTrucks, setListTrucks }) {
 
+	const trucksList: TruckClass = new TruckClass();
 
-
-	let trucksList: TruckClass = new TruckClass();
-	// let storage: LocalStorageManager = new LocalStorageManager();
-
-	// let list = storage.GetAsJSON("Trucks");
-
-
-
-
+	// DELETE ITEM ******************
 	const DeleteItem = (unique_id: string) => {
 		console.log(unique_id);
 		trucksList.SetList([...listTrucks]);
 		trucksList.RemoveTruck(unique_id);
 		setListTrucks(trucksList.GetList());
 	};
+	// ******************
 
+	// EDIT ITEM ******************
 	const EditItem = (truck: Truck) => {
 		console.log(truck);
         trucksList.EditTruck(truck);
         setListTrucks(trucksList.GetList());
 		console.log("list aquiiii",listTrucks);
     };
+	// ******************
+
 
 	return (
 		<Box sx={{ width: "100%" }}>
