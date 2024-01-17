@@ -54,11 +54,19 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 
 	// };
 
-	const DeleteItem = (id: string) => {
+	const DeleteItem = (unique_id: string) => {
+		console.log(unique_id);
 		trucksList.SetList([...listTrucks]);
-		trucksList.RemoveTruck(id);
+		trucksList.RemoveTruck(unique_id);
 		setListTrucks(trucksList.GetList());
 	};
+
+	// const EditItem = (truck: any) => {
+	// 	console.log(truck);
+    //     trucksList.EditTruck(truck);
+    //     setListTrucks(trucksList.GetList());
+	// 	console.log("list aquiiii",listTrucks);
+    // };
 
 	return (
 		<Box sx={{ width: "100%" }}>
@@ -93,8 +101,8 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 								<TableCell align="center">{item.isAvailable}</TableCell>
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
-									<Button >Edit</Button>
-									<Button onClick={() => { DeleteItem(item.id);}}>Delete</Button>
+									<Button onClick={() => { EditItem(item);}}>Edit</Button>
+									<Button onClick={() => { DeleteItem(item.unique_id);}}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}

@@ -8,3 +8,9 @@
 // -- Inside the component which display the trucks, try to see if receiving the data.
 
 https://stackoverflow.com/questions/60915262/how-to-pass-function-as-props-from-functional-parent-component-to-child
+
+
+Validation
+https://react-hook-form.com/get-started
+https://github.com/jquense/yup
+https://codesandbox.io/p/sandbox/react-hook-form-v7-validationschema-rm35t

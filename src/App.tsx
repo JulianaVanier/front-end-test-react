@@ -21,7 +21,7 @@ function App() {
 	// trucksList.SetList(storage.GetAsJSON("Trucks"));
 	const storedItems = storage.GetAsJSON("Trucks");
 	// let [listOfTrucks, setListOfTrucks] = useState<Truck[]>([]); 
-	let [listTrucks, setListTrucks] = useState(storedItems); 
+	let [listTrucks, setListTrucks] = useState(storedItems || []); 
 
 
 	// trucksList.SetList([{

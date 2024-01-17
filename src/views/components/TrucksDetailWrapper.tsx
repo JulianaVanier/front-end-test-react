@@ -1,7 +1,6 @@
 import DrawerTrucksHeader from "./fields/containers/DrawerTrucksHeader";
 import DrawerTrucksAction from "./fields/containers/DrawerTrucksAction";
 // import SelectFieldTrucks from "./fields/SelectFieldTrucks";
-import SwitchTrucks from "./fields/SwitchTrucks";
 import { Box, Paper, Divider, Grid } from "@mui/material";
 import { useForm } from "react-hook-form";
 // import type {
@@ -12,7 +11,7 @@ import { TextField } from "@mui/material";
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Resolver } from "react-hook-form";
 import { MenuItem } from "@mui/material";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -21,7 +20,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { TruckList } from "../../services/TruckList";
-import { Truck } from "../../services/TruckList";
+
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import Switch from '@mui/material/Switch';
+
 
 
 
@@ -175,42 +181,54 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
 
-    let trucksList: TruckList = new TruckList();
-    trucksList.SetList([...listTrucks]);
-    let myTruck: Truck;
+    const [state, setState] = React.useState({
+        isAvailable: true,
+    });
 
-	const NewItem = (truck: any) => {
-		trucksList.AddTruck(truck);
-		setListTrucks(trucksList.GetList());
-	};
-
-    const EditItem = (truck: any) => {
-		trucksList.EditTruck(truck);
-		setListTrucks(trucksList.GetList());
-	};
-
-    const LoadTruckById = (uniqueId: string): void => {
-        myTruck = trucksList.GetTruck(uniqueId);
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setState({
+            ...state,
+            [event.target.name]: event.target.checked,
+        });
     };
 
-    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
+    let trucksList: TruckList = new TruckList();
+    trucksList.SetList([...listTrucks]);
+    // let myTruck: Truck;
+
+    const NewItem = (truck: any) => {
+        trucksList.AddTruck(truck);
+        setListTrucks(trucksList.GetList());
+    };
+
+    // const EditItem = (truck: any) => {
+    //     trucksList.EditTruck(truck);
+    //     setListTrucks(trucksList.GetList());
+    // };
+
+    // const LoadTruckById = (uniqueId: string): void => {
+    //     myTruck = trucksList.GetTruck(uniqueId);
+    // };
+
+    const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs(''));
     // const handleChange = (event: SelectChangeEvent) => {
     //     console.log(event.target.value as string);
     //   };
 
     const {
-        register,
+        register, 
         handleSubmit,
         formState: { errors },
         reset,
         // control,
     } = useForm<FormValues>({ resolver })
-
+    
     const onSubmit = handleSubmit((data) => {
         // console.log(data);
         // localStorage.setItem("formData", JSON.stringify(data));
         NewItem(data);
-        alert(JSON.stringify(data));
+        console.log("data insert", data);
+        // alert(JSON.stringify(data));
 
         reset();
     });
@@ -241,10 +259,19 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                             flexGrow: 1,
                         }}
                     >
-                        <SwitchTrucks />
+                        <FormControl component="fieldset" variant="standard">
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Switch checked={state.isAvailable} onChange={handleChange} name="isAvailable" />
+                                    }
+                                    label="Is Available"
+                                />
+                            </FormGroup>
+                        </FormControl>
 
                         <Divider sx={{ fontWeight: "bold" }}>Informations</Divider>
-                        <Grid container spacing={2}>
+                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid item xs={6}>
                                 {/* <SelectFieldTrucks /> */}
                                 <Box
@@ -274,30 +301,30 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
                                     <TextField
                                         required
                                         label="Id"
-                                        value={myTruck.id}
-                                        {...register("id")}
+                                        // value={myTruck.id}
+                                        {...register('id',  { required: true, maxLength: 6 })}
                                     />
                                 </Box>
                             </Grid>
                         </Grid>
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DemoContainer
-                                        components={[
-                                            'DatePicker'
-                                        ]}
-                                    >
-                                        <DemoItem label="Responsive variant">
-                                            {/* <DatePicker   {...register("datePurchase")} /> */}
-                                            <DatePicker value={purchaseDate} {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)}/>
+                        {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
+                        <Grid item xs={6}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DemoContainer
+                                    components={[
+                                        'DatePicker'
+                                    ]}
+                                >
+                                    <DemoItem label="Responsive variant">
+                                        {/* <DatePicker   {...register("datePurchase")} /> */}
+                                        <DatePicker value={purchaseDate} {...register("purchaseDate")} onChange={(newValue) => setDatePurchase(newValue)} />
 
-                                        </DemoItem>
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </Grid>
-                            <Grid item xs={6}></Grid>
+                                    </DemoItem>
+                                </DemoContainer>
+                            </LocalizationProvider>
                         </Grid>
+                        <Grid item xs={6}></Grid>
+                        {/* </Grid> */}
                     </Paper>
                 </Box>
 

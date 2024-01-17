@@ -2,6 +2,7 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
+import { Box } from "@mui/material";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -29,7 +30,7 @@ export default function DrawerTrucks({ listTrucks, setListTrucks }) {
 
 	return (
 		<>
-			{(["right"] as const).map((anchor) => (
+			{(['right'] as const).map((anchor) => (
 				<React.Fragment key={anchor}>
 					<Button variant="contained" onClick={toggleDrawer(anchor, true)}>
 						Insert
@@ -38,6 +39,7 @@ export default function DrawerTrucks({ listTrucks, setListTrucks }) {
 						anchor={anchor}
 						open={state[anchor]}
 						onClose={toggleDrawer(anchor, false)}
+						onOpen={toggleDrawer(anchor, true)}
 					>
 						<TrucksDetailWrapper listTrucks={listTrucks} setListTrucks={setListTrucks}></TrucksDetailWrapper>
 					</Drawer>
