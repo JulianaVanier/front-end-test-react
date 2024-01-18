@@ -14,6 +14,18 @@ import { Controller } from "react-hook-form";
 
 
 
+type ServicesTrucksProps = {
+    listTrucks: Truck[],
+    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+}
+
+type Truck =  {
+    unique_id: string;
+    make: string;
+    id: string;
+    isAvailable: boolean;
+    purchaseDate: string;
+};
 
 
 type FormValues = {
@@ -44,26 +56,10 @@ const resolver: Resolver<FormValues> = async (values) => {
     }
 }
 
-
-export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
-
-
-
-    // const [state, setState] = React.useState({
-    //     isAvailable: true,
-    // });
-
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setState({
-    //         ...state,
-    //         [event.target.name]: event.target.checked,
-    //     });
-    // };
-    // ******************************************************
-
+const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     const trucksList: TruckClass = new TruckClass();
-    trucksList.SetList([...listTrucks]);
+    trucksList.SetList([...props.listTrucks]);
     // let myTruck: Truck;
 
     const NewItem = (truck: Truck) => {
@@ -71,7 +67,7 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
         console.log('truck', truck)
 
         trucksList.AddTruck(truck);
-        setListTrucks(trucksList.GetList());
+        props.setListTrucks(trucksList.GetList());
     };
 
     // const EditItem = (truck: any) => {
@@ -243,3 +239,4 @@ export default function TurcksDetailWrapper({ listTrucks, setListTrucks }) {
         </>
     );
 }
+export default TrucksDetailWrapper;
