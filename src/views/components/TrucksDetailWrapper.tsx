@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { Resolver } from "react-hook-form";
 
+// import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+// import moment from "moment";
+// import dayjs from "dayjs";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Truck, TruckClass } from "../../services/TruckList";
+import { TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
+
 
 
 
@@ -20,19 +24,20 @@ type ServicesTrucksProps = {
 }
 
 type Truck =  {
-    unique_id: string;
-    make: string;
-    id: string;
-    isAvailable: boolean;
-    purchaseDate: string;
+    unique_id: string,
+    make: string,
+    id: string,
+    isAvailable: boolean,
+    purchaseDate: string
 };
 
 
 type FormValues = {
-    isAvailable: boolean,
-    id: string,
+    unique_id: string,
     make: string,
-    purchaseDate: string,
+    id: string,
+    isAvailable: boolean,
+    purchaseDate: string
 }
 
 
@@ -91,20 +96,18 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     const makeValues = [
         {
-            value: 'belaz',
+            value: 'Belaz',
             label: 'Belaz',
         },
         {
-            value: 'cartepillar',
+            value: 'Cartepillar',
             label: 'Cartepillar',
         },
         {
-            value: 'komatsu',
+            value: 'Komatsu',
             label: 'Komatsu',
         }
     ];
-
-
 
     const {
         register,
@@ -115,7 +118,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     } = useForm<FormValues>({
         resolver,
         defaultValues: {
-            make: 'komatsu',
+            make: 'Komatsu',
             isAvailable: true,
             id: '12345',
             purchaseDate: '',
@@ -211,7 +214,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                     name="purchaseDate"
                                     control={control}
                                     render={({ field: { value, onChange } }) => (
-                                        <DatePicker value={value} label="Purchase Date" onChange={onChange} />
+                                        <DatePicker value={value} label="Purchase Date" onChange={onChange}/>
                                     )}
                                 />
                             </LocalizationProvider>
@@ -233,7 +236,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                {/* <DrawerTrucksAction onSave={save} /> */}
             </form>
 
         </>

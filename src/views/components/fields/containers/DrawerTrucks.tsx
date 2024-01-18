@@ -2,6 +2,8 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
+// import { useNavigate } from "react-router-dom";
+
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
@@ -9,22 +11,32 @@ type ServicesTrucksProps = {
 }
 
 type Truck =  {
-    unique_id: string;
-    make: string;
-    id: string;
-    isAvailable: boolean;
-    purchaseDate: string;
+    unique_id: string,
+    make: string,
+    id: string,
+    isAvailable: boolean,
+    purchaseDate: string
 };
 
 
 const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
+
+	// const navigate = useNavigate();
+
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
+
+	// function createItem(){
+	// 	console.log('CREATE ITEM HERE');
+	// 	navigate("/create");
+
+	// }
+	
 
 	return (
 		<>
 			{(['right'] as const).map((anchor) => (
 				<React.Fragment key={anchor}>
-					<Button variant="contained" onClick={()=>setIsDrawerOpen(true)}>
+					<Button variant="contained" onClick={()=>{setIsDrawerOpen(true), createItem()}}>
 						Insert
 					</Button>
 					<Drawer

@@ -8,6 +8,8 @@ import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
@@ -15,16 +17,17 @@ type ServicesTrucksProps = {
 }
 
 type Truck = {
-    unique_id: string;
-    make: string;
-    id: string;
-    isAvailable: boolean;
-    purchaseDate: string;
+    unique_id: string,
+    make: string,
+    id: string,
+    isAvailable: boolean,
+    purchaseDate: string
 }
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
-// export default function ListTrucks({ listTrucks, setListTrucks }) {
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	const trucksList: TruckClass = new TruckClass();
 
@@ -40,9 +43,12 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	// EDIT ITEM ******************
 	const EditItem = (truck: Truck) => {
 		console.log(truck);
-        trucksList.EditTruck(truck);
-        props.setListTrucks(trucksList.GetList());
-		console.log("list aquiiii",props.listTrucks);
+		navigate(`/`)
+
+
+        // trucksList.EditTruck(truck);
+        // props.setListTrucks(trucksList.GetList());
+		// console.log("list aquiiii",props.listTrucks);
     };
 	// ******************
 
@@ -70,7 +76,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 									{item.make}
 								</TableCell>
 								<TableCell align="center">{item.id}</TableCell>
-								<TableCell align="center">{item.isAvailable}</TableCell>
+								<TableCell align="center">{ item.isAvailable ? "Yes" : "No"}</TableCell>
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
 									<Button onClick={() => { EditItem(item);}}>Edit</Button>

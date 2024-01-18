@@ -7,11 +7,11 @@ type ServicesTrucksProps = {
 }
 
 type Truck =  {
-    unique_id: string;
-    make: string;
-    id: string;
-    isAvailable: boolean;
-    purchaseDate: string;
+    unique_id: string,
+    make: string,
+    id: string,
+    isAvailable: boolean,
+    purchaseDate: string
 };
 
 const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
