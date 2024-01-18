@@ -14,6 +14,8 @@ import { TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
+import { useLocation } from "react-router-dom";
+
 
 
 
@@ -43,18 +45,6 @@ type FormValues = {
 
 
 const resolver: Resolver<FormValues> = async (values) => {
-    // return {
-    //     values: values.typeMake ? values : {},
-    //     errors: !values.typeMake
-    //         ? {
-    //             typeMake: {
-    //                 type: "required",
-    //                 message: "This is required.",
-    //             },
-    //         }
-    //         : {},
-    // }
-
     return {
         values: values,
         errors: {}
@@ -62,40 +52,42 @@ const resolver: Resolver<FormValues> = async (values) => {
 }
 
 const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
+    // export default function TrucksDetailWrapper() {
 
+    
 
+	const location = useLocation();
+	// const data = location.state;
+
+	// console.log('data', data)
+
+    if (location.pathname  === '/edit'){
+        const data = location.state;
+        console.log('data', data);
+        console.log('props.listTrucks', props.listTrucks);
+    }
 
 
     const trucksList: TruckClass = new TruckClass();
     trucksList.SetList([...props.listTrucks]);
+    // trucksList.SetList([...listTrucks]);
     // let myTruck: Truck;
 
     const NewItem = (truck: Truck) => {
 
-        console.log('truck', truck)
+        console.log('truck inserted', truck)
 
         trucksList.AddTruck(truck);
         props.setListTrucks(trucksList.GetList());
+        // setListTrucks(trucksList.GetList());
+
+        console.log('trucksList.GetList()', trucksList.GetList());
     };
 
     // const EditItem = (truck: any) => {
     //     trucksList.EditTruck(truck);
     //     setListTrucks(trucksList.GetList());
     // };
-
-    // const LoadTruckById = (uniqueId: string): void => {
-    //     myTruck = trucksList.GetTruck(uniqueId);
-    // };
-
-    // const [purchaseDate, setDatePurchase] = React.useState<Dayjs | null>(dayjs());
-    // const [purchaseDate, setDatePurchase] = React.useState(null);
-
-
-
-
-    // const handleChange = (event: SelectChangeEvent) => {
-    //     console.log(event.target.value as string);
-    //   };
 
     const makeValues = [
         {
@@ -126,7 +118,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
             id: '12345',
             purchaseDate: '',
         }
-    })
+    });
 
     const save = (data: Truck) => {
         console.log(data);
@@ -136,24 +128,29 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         reset();
     };
 
-    const onSubmit = handleSubmit((data) => {
-        // console.log(data);
-        // localStorage.setItem("formData", JSON.stringify(data));
-        NewItem(data);
-        console.log("data insert",data);
-        reset();
-    });
+    // const onSubmit = handleSubmit((data) => {
+    //     // console.log(data);
+    //     // localStorage.setItem("formData", JSON.stringify(data));
+    //     NewItem(data);
+    //     console.log("data insert",data);
+    //     reset();
+    // });
 
     // const onSubmit = handleSubmit((data) => console.log(data))
 
     // const cloneWithRegister = (child: React.ReactElement) =>
     // React.cloneElement(child,{register});
 
+    // useEffect(() => {
+	// 	console.log("new list Inside useEffect", listTrucks);
+	// 	storage.SetLocalStorageFromArray("Trucks", listTrucks);
+	// }, [listTrucks, storage]);
+
     return (
         <>
             <DrawerTrucksHeader />
 
-            <form onSubmit={onSubmit}>
+            <form >
 
                 <Box
                     display={"flex"}

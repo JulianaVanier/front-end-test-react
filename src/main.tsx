@@ -6,8 +6,9 @@ import {
 	createBrowserRouter,
 	RouterProvider,
 } from "react-router-dom";
-import TrucksDetailWrapper from './views/components/TrucksDetailWrapper.tsx';
-import DrawerTrucks from './views/components/fields/containers/DrawerTrucks.tsx';
+
+
+
 
 
 const router = createBrowserRouter([
@@ -23,14 +24,19 @@ const router = createBrowserRouter([
 	// 	path: "/create",
 	// 	element: (<div><TrucksDetailWrapper/></div>)
 	// }
-	{
-		path: "/edit",
-		element: (
-		<div>
-			<TrucksDetailWrapper/>
-		</div>
-		)
-	}
+	// {
+	// 	path: "/edit",
+	// 	// render={(props) => <Dashboard {...props} isAuthed={true} />}
+
+	// 	// path:"/edit", element:{<TrucksDetailWrapper listTrucks={listTrucks} setListTrucks={setListTrucks} />} 
+		
+	// 	// render={(props) => <TrucksDetailWrapper {...props} listTrucks={listTrucks} setListTrucks={setListTrucks} />}
+	// 	element: (
+	// 	<div>
+	// 		<TrucksDetailWrapper/>
+	// 	</div>
+	// 	)
+	// }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -39,6 +45,9 @@ root.render(
 		<RouterProvider router={router} />
 	</React.StrictMode>
 );
+
+
+
 
 // <React.StrictMode>
 // 	<App />

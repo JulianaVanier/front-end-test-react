@@ -33,8 +33,6 @@ export default function TruckListView() {
 		// history.push('/edit')
 		// history.push({ pathname: "/edit", state: truck });
 
-
-
         // trucksList.EditTruck(truck);
         // props.setListTrucks(trucksList.GetList());
 		// console.log("list aquiiii",props.listTrucks);
