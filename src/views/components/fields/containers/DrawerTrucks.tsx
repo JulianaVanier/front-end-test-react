@@ -3,7 +3,21 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
 
-export default function DrawerTrucks({ listTrucks, setListTrucks }) {
+type ServicesTrucksProps = {
+    listTrucks: Truck[],
+    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+}
+
+type Truck =  {
+    unique_id: string;
+    make: string;
+    id: string;
+    isAvailable: boolean;
+    purchaseDate: string;
+};
+
+
+const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
 
 	return (
@@ -18,10 +32,11 @@ export default function DrawerTrucks({ listTrucks, setListTrucks }) {
 						open={isDrawerOpen}
 						onClose={()=>setIsDrawerOpen(false)}
 					>
-						<TrucksDetailWrapper listTrucks={listTrucks} setListTrucks={setListTrucks}></TrucksDetailWrapper>
+						<TrucksDetailWrapper listTrucks={props.listTrucks} setListTrucks={props.setListTrucks}></TrucksDetailWrapper>
 					</Drawer>
 				</React.Fragment>
 			))}
 		</>
 	);
 }
+export default DrawerTrucks;
