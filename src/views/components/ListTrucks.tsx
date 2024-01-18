@@ -9,24 +9,31 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
 
-type Truck = {
-	unique_id: string;
-    isAvailable: boolean,
-    id: string,
-    make: string,
-    purchaseDate: string,
+type ServicesTrucksProps = {
+    listTrucks: Truck[],
+    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
 }
 
-export default function ListTrucks({ listTrucks, setListTrucks }) {
+type Truck = {
+    unique_id: string;
+    make: string;
+    id: string;
+    isAvailable: boolean;
+    purchaseDate: string;
+}
+
+const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
+
+// export default function ListTrucks({ listTrucks, setListTrucks }) {
 
 	const trucksList: TruckClass = new TruckClass();
 
 	// DELETE ITEM ******************
 	const DeleteItem = (unique_id: string) => {
 		console.log(unique_id);
-		trucksList.SetList([...listTrucks]);
+		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
-		setListTrucks(trucksList.GetList());
+		props.setListTrucks(trucksList.GetList());
 	};
 	// ******************
 
@@ -34,8 +41,8 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 	const EditItem = (truck: Truck) => {
 		console.log(truck);
         trucksList.EditTruck(truck);
-        setListTrucks(trucksList.GetList());
-		console.log("list aquiiii",listTrucks);
+        props.setListTrucks(trucksList.GetList());
+		console.log("list aquiiii",props.listTrucks);
     };
 	// ******************
 
@@ -54,7 +61,7 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{listTrucks.map((item: Truck) => (
+						{props.listTrucks.map((item: Truck) => (
 							<TableRow
 								key={item.unique_id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -77,3 +84,4 @@ export default function ListTrucks({ listTrucks, setListTrucks }) {
 		</Box>
 	);
 }
+export default ListTrucks;
