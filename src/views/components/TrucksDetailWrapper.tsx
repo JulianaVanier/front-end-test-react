@@ -61,6 +61,8 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
 	// console.log('data', data)
 
+    
+
     if (location.pathname  === '/edit'){
         const data = location.state;
         console.log('data', data);

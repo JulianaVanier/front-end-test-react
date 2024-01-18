@@ -20,6 +20,7 @@ export default function TruckListView() {
 	
 	const storage: LocalStorageManager = new LocalStorageManager();
 
+	// Get inf from LocalStorage
 	const storedTrucks = storage.GetAsJSON("Trucks");
 	const [listTrucks, setListTrucks] = useState<Truck[]>(storedTrucks || []); 
 
