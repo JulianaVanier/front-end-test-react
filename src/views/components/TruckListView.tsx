@@ -49,7 +49,7 @@ export default function TruckListView() {
 		<>
 			<HeaderTrucks></HeaderTrucks>
 			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ServicesTrucks>
-			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} editItem={editItem}></ListTrucks>
+			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
 		</>
 	)
 }

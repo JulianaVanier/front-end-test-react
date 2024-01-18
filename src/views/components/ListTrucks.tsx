@@ -11,6 +11,9 @@ import { TruckClass } from "../../services/TruckList";
 // import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { LocalStorageManager } from "../../services/LocalStorageManager";
+import { useState } from "react";
 
 
 
@@ -30,6 +33,54 @@ type Truck = {
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
+	// export default function ListTrucks() {
+
+
+	// // GET DATA FROM LOCALSTORAGE
+	// const storage: LocalStorageManager = new LocalStorageManager();
+
+	// const storedTrucks = storage.GetAsJSON("Trucks");
+	// console.log('storedTrucks', storedTrucks)
+
+	// const [listTrucks, setListTrucks] = useState(storedTrucks);
+	// // const [listTrucks, setListTrucks] = useState<Truck[]>(storedTrucks || []); 
+
+	// // const navigate = useNavigate();
+
+	
+	// // EDIT ITEM ******************
+	// // const editItem = (truck: Truck) => {
+	// // 	console.log(truck);
+	// // 	navigate('/edit', {state: truck});
+	// // 	// history.push('/edit')
+	// // 	// history.push({ pathname: "/edit", state: truck });
+
+    // //     // trucksList.EditTruck(truck);
+    // //     // props.setListTrucks(trucksList.GetList());
+	// // 	// console.log("list aquiiii",props.listTrucks);
+    // // };
+	// // ******************
+
+	// useEffect(() => {
+	// 	// console.log("new list Inside useEffect", listTrucks);
+
+	// 	storage.SetLocalStorageFromArray("Trucks", listTrucks);
+	// }, [storedTrucks, listTrucks]);
+
+	// // useEffect(() => {
+	// // 	// storage.GetAsJSON("Trucks");
+
+	// // }, [listTrucks, storage]);
+
+	// // ************************************************************************
+
+
+
+
+
+
+
+
 	// const location = useLocation();
 	const navigate = useNavigate();
 	// const history = useHistory();
@@ -39,6 +90,8 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 	// DELETE ITEM ******************
 	const DeleteItem = (unique_id: string) => {
+
+
 		console.log(unique_id);
 		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
@@ -76,6 +129,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
+						{/* {props.listTrucks.map((item: Truck) => ( */}
 						{props.listTrucks.map((item: Truck) => (
 							<TableRow
 								key={item.unique_id}
