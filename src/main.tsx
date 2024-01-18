@@ -7,12 +7,17 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 import TrucksDetailWrapper from './views/components/TrucksDetailWrapper.tsx';
+import DrawerTrucks from './views/components/fields/containers/DrawerTrucks.tsx';
 
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: (<div><App/></div>),
+		element: (
+		<div>
+			<App/>
+		</div>
+		),
 	},
 	// {
 	// 	path: "/create",
@@ -20,7 +25,11 @@ const router = createBrowserRouter([
 	// }
 	{
 		path: "/edit",
-		element: (<div><TrucksDetailWrapper/></div>)
+		element: (
+		<div>
+			<TrucksDetailWrapper/>
+		</div>
+		)
 	}
 ]);
 

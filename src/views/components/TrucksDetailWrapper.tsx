@@ -63,6 +63,9 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
+
+
+
     const trucksList: TruckClass = new TruckClass();
     trucksList.SetList([...props.listTrucks]);
     // let myTruck: Truck;

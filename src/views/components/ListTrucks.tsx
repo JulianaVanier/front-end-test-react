@@ -8,12 +8,16 @@ import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+
+
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
-    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
+	// editItem: (truck: Truck) => void
 }
 
 type Truck = {
@@ -26,8 +30,10 @@ type Truck = {
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
-	const location = useLocation();
+	// const location = useLocation();
 	const navigate = useNavigate();
+	// const history = useHistory();
+
 
 	const trucksList: TruckClass = new TruckClass();
 
@@ -41,9 +47,12 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	// ******************
 
 	// EDIT ITEM ******************
-	const EditItem = (truck: Truck) => {
+		const EditItem = (truck: Truck) => {
 		console.log(truck);
-		navigate(`/`)
+		navigate('/edit', {state: truck});
+		// history.push('/edit')
+		// history.push({ pathname: "/edit", state: truck });
+
 
 
         // trucksList.EditTruck(truck);

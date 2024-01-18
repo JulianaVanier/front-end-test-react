@@ -3,6 +3,8 @@ import { LocalStorageManager } from '../../services/LocalStorageManager';
 import HeaderTrucks from './HeaderTrucks';
 import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
+import { useNavigate } from 'react-router-dom';
+
 
 
 type Truck =  {
@@ -21,6 +23,24 @@ export default function TruckListView() {
 	const storedTrucks = storage.GetAsJSON("Trucks");
 	const [listTrucks, setListTrucks] = useState<Truck[]>(storedTrucks || []); 
 
+	const navigate = useNavigate();
+
+	
+	// EDIT ITEM ******************
+	const editItem = (truck: Truck) => {
+		console.log(truck);
+		navigate('/edit', {state: truck});
+		// history.push('/edit')
+		// history.push({ pathname: "/edit", state: truck });
+
+
+
+        // trucksList.EditTruck(truck);
+        // props.setListTrucks(trucksList.GetList());
+		// console.log("list aquiiii",props.listTrucks);
+    };
+	// ******************
+
 	useEffect(() => {
 		console.log("new list Inside useEffect", listTrucks);
 		storage.SetLocalStorageFromArray("Trucks", listTrucks);
@@ -30,7 +50,7 @@ export default function TruckListView() {
 		<>
 			<HeaderTrucks></HeaderTrucks>
 			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ServicesTrucks>
-			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
+			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} editItem={editItem}></ListTrucks>
 		</>
 	)
 }

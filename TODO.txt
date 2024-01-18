@@ -14,3 +14,6 @@ Validation
 https://react-hook-form.com/get-started
 https://github.com/jquense/yup
 https://codesandbox.io/p/sandbox/react-hook-form-v7-validationschema-rm35t
+
+Pass data useNavigate
+https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object.
