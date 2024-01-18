@@ -6,11 +6,13 @@ import ListTrucks from './views/components/ListTrucks';
 import ServicesTrucks from './views/components/ServicesTrucks';
 
 type Truck =  {
+    unique_id: string;
     make: string;
     id: string;
     isAvailable: boolean;
     purchaseDate: string;
 };
+
 
 function App() {
 
