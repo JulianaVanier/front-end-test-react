@@ -5,6 +5,9 @@ import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
 import { useNavigate } from 'react-router-dom';
 
+type TruckListViewProps = {
+	drawerAutoOpen: boolean
+}
 
 
 type Truck =  {
@@ -16,7 +19,8 @@ type Truck =  {
 };
 
 
-export default function TruckListView() {
+// export default function TruckListView({autoOpen}:{autoOpen: boolean}) {
+	const TruckListView: React.FC<TruckListViewProps> = (props) => {
 	
 	const storage: LocalStorageManager = new LocalStorageManager();
 
@@ -28,16 +32,16 @@ export default function TruckListView() {
 
 	
 	// EDIT ITEM ******************
-	const editItem = (truck: Truck) => {
-		console.log(truck);
-		navigate('/edit', {state: truck});
-		// history.push('/edit')
-		// history.push({ pathname: "/edit", state: truck });
+	// const editItem = (truck: Truck) => {
+	// 	console.log(truck);
+	// 	navigate('/edit', {state: truck});
+	// 	// history.push('/edit')
+	// 	// history.push({ pathname: "/edit", state: truck });
 
-        // trucksList.EditTruck(truck);
-        // props.setListTrucks(trucksList.GetList());
-		// console.log("list aquiiii",props.listTrucks);
-    };
+    //     // trucksList.EditTruck(truck);
+    //     // props.setListTrucks(trucksList.GetList());
+	// 	// console.log("list aquiiii",props.listTrucks);
+    // };
 	// ******************
 
 	useEffect(() => {
@@ -48,11 +52,11 @@ export default function TruckListView() {
 	return (
 		<>
 			<HeaderTrucks></HeaderTrucks>
-			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ServicesTrucks>
+			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} drawerAutoOpen={props.drawerAutoOpen}></ServicesTrucks>
 			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
 		</>
 	)
 }
-
+export default TruckListView;
 
 

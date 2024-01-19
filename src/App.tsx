@@ -4,7 +4,7 @@ import TruckListView from './views/components/TruckListView';
 
 function App() {
 	return (
-		<TruckListView></TruckListView>
+		<TruckListView drawerAutoOpen={false}></TruckListView>
 	)
 }
 

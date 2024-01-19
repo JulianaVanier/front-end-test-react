@@ -7,6 +7,8 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 
+import TruckListView from './views/components/TruckListView.tsx';
+
 
 
 const router = createBrowserRouter([
@@ -22,19 +24,14 @@ const router = createBrowserRouter([
 	// 	path: "/create",
 	// 	element: (<div><TrucksDetailWrapper/></div>)
 	// }
-	// {
-	// 	path: "/edit",
-	// 	// render={(props) => <Dashboard {...props} isAuthed={true} />}
-
-	// 	// path:"/edit", element:{<TrucksDetailWrapper listTrucks={listTrucks} setListTrucks={setListTrucks} />} 
-		
-	// 	// render={(props) => <TrucksDetailWrapper {...props} listTrucks={listTrucks} setListTrucks={setListTrucks} />}
-	// 	element: (
-	// 	<div>
-	// 		<TrucksDetailWrapper/>
-	// 	</div>
-	// 	)
-	// }
+	{
+		path: "/edit",
+		element: (
+		<div>
+			<TruckListView drawerAutoOpen={true}/>
+		</div>
+		)
+	}
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
