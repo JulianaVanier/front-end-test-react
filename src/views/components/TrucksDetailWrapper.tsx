@@ -131,6 +131,11 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         reset();
     };
 
+    // OnClose for button CANCEL
+    function onClose() {
+		props.setIsDrawerOpen(false);
+	}
+
     // const onSubmit = handleSubmit((data) => {
     //     // console.log(data);
     //     // localStorage.setItem("formData", JSON.stringify(data));
@@ -227,7 +232,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                 </Box>
                 <AppBar position="static">
                     <Toolbar variant="dense">
-                        <Button variant="contained" type="button">Cancel</Button>
+                        <Button variant="contained" type="button" onClick={onClose}>Cancel</Button>
                         <Box sx={{ display: 'flex', flexDirection: 'row', p: 1, m: 1 }} />
                         {/* <Button variant="contained" type="submit" onClick={props.onSave}>Save</Button> */}
                         <Button
