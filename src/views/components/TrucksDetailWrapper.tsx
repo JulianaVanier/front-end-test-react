@@ -14,7 +14,7 @@ import { TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -56,6 +56,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     // export default function TrucksDetailWrapper() {
 
     
+    const navigate = useNavigate();
 
 	const location = useLocation();
 	// const data = location.state;
@@ -133,6 +134,10 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     // OnClose for button CANCEL
     function onClose() {
+        if (location.pathname  === '/edit'){
+            props.setIsDrawerOpen(false);
+            navigate('/');
+        }
 		props.setIsDrawerOpen(false);
 	}
 
