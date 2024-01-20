@@ -55,7 +55,7 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 						open={isDrawerOpen}
 						onClose={()=>{setIsDrawerOpen(false); console.log('close')}}
 					>
-						<TrucksDetailWrapper listTrucks={props.listTrucks} setListTrucks={props.setListTrucks}></TrucksDetailWrapper>
+						<TrucksDetailWrapper listTrucks={props.listTrucks} setListTrucks={props.setListTrucks} setIsDrawerOpen={setIsDrawerOpen}></TrucksDetailWrapper>
 					</Drawer>
 				</React.Fragment>
 			))}

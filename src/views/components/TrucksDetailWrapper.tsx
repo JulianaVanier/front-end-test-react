@@ -22,7 +22,8 @@ import { useLocation } from "react-router-dom";
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
-    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
+    setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Truck =  {
@@ -150,7 +151,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     return (
         <>
-            <DrawerTrucksHeader />
+            <DrawerTrucksHeader setIsDrawerOpen={props.setIsDrawerOpen} />
 
             <form >
 
