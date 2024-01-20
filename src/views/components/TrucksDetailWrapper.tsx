@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { Resolver } from "react-hook-form";
 
-// import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
-// import moment from "moment";
-// import dayjs from "dayjs";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -15,9 +12,6 @@ import { TruckClass } from "../../services/TruckList";
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-
-
-
 
 
 type ServicesTrucksProps = {
@@ -53,29 +47,18 @@ const resolver: Resolver<FormValues> = async (values) => {
 }
 
 const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
-    // export default function TrucksDetailWrapper() {
-
     
     const navigate = useNavigate();
-
 	const location = useLocation();
-	// const data = location.state;
+    const trucksList: TruckClass = new TruckClass();
+    trucksList.SetList([...props.listTrucks]);
 
-	// console.log('data', data)
-
-    
 
     if (location.pathname  === '/edit'){
         const data = location.state;
         console.log('EDIT TrucksDetailWrapper', data);
         console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
     }
-
-
-    const trucksList: TruckClass = new TruckClass();
-    trucksList.SetList([...props.listTrucks]);
-    // trucksList.SetList([...listTrucks]);
-    // let myTruck: Truck;
 
     const NewItem = (truck: Truck) => {
 
@@ -140,24 +123,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
 		props.setIsDrawerOpen(false);
 	}
-
-    // const onSubmit = handleSubmit((data) => {
-    //     // console.log(data);
-    //     // localStorage.setItem("formData", JSON.stringify(data));
-    //     NewItem(data);
-    //     console.log("data insert",data);
-    //     reset();
-    // });
-
-    // const onSubmit = handleSubmit((data) => console.log(data))
-
-    // const cloneWithRegister = (child: React.ReactElement) =>
-    // React.cloneElement(child,{register});
-
-    // useEffect(() => {
-	// 	console.log("new list Inside useEffect", listTrucks);
-	// 	storage.SetLocalStorageFromArray("Trucks", listTrucks);
-	// }, [listTrucks, storage]);
 
     return (
         <>
@@ -239,7 +204,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                     <Toolbar variant="dense">
                         <Button variant="contained" type="button" onClick={onClose}>Cancel</Button>
                         <Box sx={{ display: 'flex', flexDirection: 'row', p: 1, m: 1 }} />
-                        {/* <Button variant="contained" type="submit" onClick={props.onSave}>Save</Button> */}
                         <Button
                             variant="contained"
                             type="submit"

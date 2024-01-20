@@ -10,7 +10,7 @@ type DrawerTrucksHeaderProps = {
 
 
 const DrawerTrucksHeader: React.FC<DrawerTrucksHeaderProps> = (props) => {
-	// export default function DrawerTrucksHeader(props) {
+	
 	const navigate = useNavigate();
 
 	function onClose() {

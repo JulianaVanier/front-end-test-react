@@ -19,7 +19,6 @@ type Truck =  {
 };
 
 
-// export default function TruckListView({autoOpen}:{autoOpen: boolean}) {
 	const TruckListView: React.FC<TruckListViewProps> = (props) => {
 	
 	const storage: LocalStorageManager = new LocalStorageManager();
