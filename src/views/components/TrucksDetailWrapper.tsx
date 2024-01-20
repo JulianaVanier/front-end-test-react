@@ -82,7 +82,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         const data = location.state;
 
         defaultValuesEdit = data;
-        console.log('defaultValuesEdit', defaultValuesEdit);
     }
     // **************************
 
@@ -107,35 +106,25 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
             return
         }
         
-        console.log(data);
         newItem(data);
-        console.log("data insert", data);
         reset();
-
     };
     // **************************
 
     const newItem = (truck: Truck) => {
 
-        console.log('truck inserted', truck)
-
         trucksList.AddTruck(truck);
         props.setListTrucks(trucksList.GetList());
-        // setListTrucks(trucksList.GetList());
         props.setIsDrawerOpen(false);
-
-        console.log('trucksList.GetList()', trucksList.GetList());
     };
     // **************************
 
     const editItem = (truck: Truck) => {
-        console.log('Here in editItem', truck);
+
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
         props.setIsDrawerOpen(false);
-        navigate('/');
-
-
+        // navigate('/');
     }
     // **************************
 

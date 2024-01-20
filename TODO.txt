@@ -19,9 +19,11 @@ Pass data useNavigate
 https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object.
 
 
-Correct edit for item already created
+DONE - Correct edit for item already created
+DONE - Solve problem date picker
+
+change path after edit
 when select insert change the path
-Solve problem date picker
 add data requirements
 correct layout
 responsive

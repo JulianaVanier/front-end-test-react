@@ -4,6 +4,7 @@ import HeaderTrucks from './HeaderTrucks';
 import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
 
+
 type TruckListViewProps = {
 	drawerAutoOpen: boolean
 }
@@ -28,7 +29,6 @@ type Truck =  {
 
 
 	useEffect(() => {
-		console.log("new list Inside useEffect", listTrucks);
 		storage.SetLocalStorageFromArray("Trucks", listTrucks);
 	}, [listTrucks, storage]);
 
