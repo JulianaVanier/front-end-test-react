@@ -119,6 +119,8 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
         if (location.pathname === '/edit') {
             editItem(data);
+            reset();
+            props.setIsDrawerOpen(false);
             return
         }
         
@@ -126,6 +128,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         NewItem(data);
         console.log("data insert", data);
         reset();
+        props.setIsDrawerOpen(false);
     };
 
     const NewItem = (truck: Truck) => {
@@ -143,7 +146,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         console.log('Here in editItem', truck);
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
-        
+
     }
 
 
