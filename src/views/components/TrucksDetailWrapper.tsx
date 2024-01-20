@@ -12,6 +12,7 @@ import { TruckClass } from "../../services/TruckList";
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 type ServicesTrucksProps = {
@@ -53,12 +54,9 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     const trucksList: TruckClass = new TruckClass();
     trucksList.SetList([...props.listTrucks]);
 
+  
 
-    if (location.pathname  === '/edit'){
-        const data = location.state;
-        console.log('EDIT TrucksDetailWrapper', data);
-        console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
-    }
+
 
     const NewItem = (truck: Truck) => {
 
@@ -91,6 +89,33 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
     ];
 
+    // const [defaultValuesEdit, setDefaultValuesEdit] = useState({});
+
+    // console.log('defaultValuesEdit no iniciooooo', defaultValuesEdit);
+
+
+
+    let defaultValuesEdit = [];
+
+        if (location.pathname  === '/edit'){
+    
+            const data = location.state;
+            // setDefaultValuesEdit = location.state;
+            // console.log('defaulValuesEdit', defaulValuesEdit);
+            // console.log('EDIT TrucksDetailWrapper', data);
+            // console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
+            // setDefaultValuesEdit(data);
+
+            defaultValuesEdit = data;
+            console.log('setDefaultValuesEdit', defaultValuesEdit);
+        } 
+		// console.log("new list Inside useEffect", listTrucks);
+		// storage.SetLocalStorageFromArray("Trucks", listTrucks);
+	// }, [listTrucks, storage]);
+ 
+
+
+
     const {
         register,
         handleSubmit,
@@ -99,12 +124,19 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         control,
     } = useForm<FormValues>({
         resolver,
+        // defaultValues: defaultValuesEdit || {},
         defaultValues: {
-            make: 'Komatsu',
-            isAvailable: true,
-            id: '12345',
+            make: defaultValuesEdit.make,
+            isAvailable: defaultValuesEdit.isAvailable,
+            id: defaultValuesEdit.id,
             purchaseDate: '',
         }
+    //         defaultValues: {
+    //         make: 'Komatsu',
+    //         isAvailable: true,
+    //         id: '12345',
+    //         purchaseDate: '',
+    // }
     });
 
     const save = (data: Truck) => {
@@ -123,6 +155,21 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
 		props.setIsDrawerOpen(false);
 	}
+
+// 	useEffect(() => {
+//         if (location.pathname  === '/edit'){
+//             const data = location.state;
+//             // setDefaultValuesEdit = location.state;
+//             // console.log('defaulValuesEdit', defaulValuesEdit);
+//             // console.log('EDIT TrucksDetailWrapper', data);
+//             // console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
+//             setDefaultValuesEdit(data);
+//             console.log('setDefaultValuesEdit', defaultValuesEdit.id);
+//         }
+// 		// console.log("new list Inside useEffect", listTrucks);
+// 		// storage.SetLocalStorageFromArray("Trucks", listTrucks);
+// 	// }, [listTrucks, storage]);
+// }, [defaultValuesEdit]);
 
     return (
         <>

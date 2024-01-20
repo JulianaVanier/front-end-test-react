@@ -103,6 +103,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		const EditItem = (truck: Truck) => {
 		console.log(truck);
 		navigate('/edit', {state: truck});
+		// navigate(`/edit/${truck.unique_id}`, {state: truck});
 		// history.push('/edit')
 		// history.push({ pathname: "/edit", state: truck });
 
