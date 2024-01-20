@@ -21,7 +21,7 @@ type ServicesTrucksProps = {
     setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-type Truck =  {
+type Truck = {
     unique_id: string,
     make: string,
     id: string,
@@ -48,31 +48,11 @@ const resolver: Resolver<FormValues> = async (values) => {
 }
 
 const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
-    
+
     const navigate = useNavigate();
-	const location = useLocation();
+    const location = useLocation();
     const trucksList: TruckClass = new TruckClass();
     trucksList.SetList([...props.listTrucks]);
-
-  
-
-
-
-    const NewItem = (truck: Truck) => {
-
-        console.log('truck inserted', truck)
-
-        trucksList.AddTruck(truck);
-        props.setListTrucks(trucksList.GetList());
-        // setListTrucks(trucksList.GetList());
-
-        console.log('trucksList.GetList()', trucksList.GetList());
-    };
-
-    // const EditItem = (truck: any) => {
-    //     trucksList.EditTruck(truck);
-    //     setListTrucks(trucksList.GetList());
-    // };
 
     const makeValues = [
         {
@@ -89,31 +69,27 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
     ];
 
-    // const [defaultValuesEdit, setDefaultValuesEdit] = useState({});
+    // OnClose for button CANCEL
+    function onClose() {
+        if (location.pathname === '/edit') {
+            props.setIsDrawerOpen(false);
+            navigate('/');
+        }
+        props.setIsDrawerOpen(false);
+    }
+    // **************************
 
-    // console.log('defaultValuesEdit no iniciooooo', defaultValuesEdit);
-
-
-
+    // set defaut value to edit
     let defaultValuesEdit = [];
 
-        if (location.pathname  === '/edit'){
-    
-            const data = location.state;
-            // setDefaultValuesEdit = location.state;
-            // console.log('defaulValuesEdit', defaulValuesEdit);
-            // console.log('EDIT TrucksDetailWrapper', data);
-            // console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
-            // setDefaultValuesEdit(data);
+    if (location.pathname === '/edit') {
 
-            defaultValuesEdit = data;
-            console.log('setDefaultValuesEdit', defaultValuesEdit);
-        } 
-		// console.log("new list Inside useEffect", listTrucks);
-		// storage.SetLocalStorageFromArray("Trucks", listTrucks);
-	// }, [listTrucks, storage]);
- 
+        const data = location.state;
 
+        defaultValuesEdit = data;
+        console.log('defaultValuesEdit', defaultValuesEdit);
+    }
+    // **************************
 
 
     const {
@@ -124,52 +100,53 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         control,
     } = useForm<FormValues>({
         resolver,
-        // defaultValues: defaultValuesEdit || {},
-        defaultValues: {
-            make: defaultValuesEdit.make,
-            isAvailable: defaultValuesEdit.isAvailable,
-            id: defaultValuesEdit.id,
-            purchaseDate: '',
-        }
-    //         defaultValues: {
-    //         make: 'Komatsu',
-    //         isAvailable: true,
-    //         id: '12345',
-    //         purchaseDate: '',
-    // }
+        defaultValues: defaultValuesEdit || {},
+        // defaultValues: {
+        //     make: defaultValuesEdit.make,
+        //     isAvailable: defaultValuesEdit.isAvailable,
+        //     id: defaultValuesEdit.id,
+        //     purchaseDate: '',
+        // }
+        //         defaultValues: {
+        //         make: 'Komatsu',
+        //         isAvailable: true,
+        //         id: '12345',
+        //         purchaseDate: '',
+        // }
     });
 
     const save = (data: Truck) => {
+
+        if (location.pathname === '/edit') {
+            editItem(data);
+            return
+        }
+        
         console.log(data);
-        // localStorage.setItem("formData", JSON.stringify(data));
         NewItem(data);
         console.log("data insert", data);
         reset();
     };
 
-    // OnClose for button CANCEL
-    function onClose() {
-        if (location.pathname  === '/edit'){
-            props.setIsDrawerOpen(false);
-            navigate('/');
-        }
-		props.setIsDrawerOpen(false);
-	}
+    const NewItem = (truck: Truck) => {
 
-// 	useEffect(() => {
-//         if (location.pathname  === '/edit'){
-//             const data = location.state;
-//             // setDefaultValuesEdit = location.state;
-//             // console.log('defaulValuesEdit', defaulValuesEdit);
-//             // console.log('EDIT TrucksDetailWrapper', data);
-//             // console.log('props.listTrucks TrucksDetailWrapper', props.listTrucks);
-//             setDefaultValuesEdit(data);
-//             console.log('setDefaultValuesEdit', defaultValuesEdit.id);
-//         }
-// 		// console.log("new list Inside useEffect", listTrucks);
-// 		// storage.SetLocalStorageFromArray("Trucks", listTrucks);
-// 	// }, [listTrucks, storage]);
-// }, [defaultValuesEdit]);
+        console.log('truck inserted', truck)
+
+        trucksList.AddTruck(truck);
+        props.setListTrucks(trucksList.GetList());
+        // setListTrucks(trucksList.GetList());
+
+        console.log('trucksList.GetList()', trucksList.GetList());
+    };
+
+    const editItem = (truck: Truck) => {
+        console.log('Here in editItem', truck);
+        trucksList.EditTruck(truck);
+        props.setListTrucks(trucksList.GetList());
+        
+    }
+
+
 
     return (
         <>
@@ -239,7 +216,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                     name="purchaseDate"
                                     control={control}
                                     render={({ field: { value, onChange } }) => (
-                                        <DatePicker value={value} label="Purchase Date" onChange={onChange}/>
+                                        <DatePicker value={value} label="Purchase Date" onChange={onChange} />
                                     )}
                                 />
                             </LocalizationProvider>
