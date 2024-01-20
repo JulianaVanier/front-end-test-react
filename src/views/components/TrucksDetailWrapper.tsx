@@ -11,8 +11,7 @@ import { TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
 import { Controller } from "react-hook-form";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 type ServicesTrucksProps = {
@@ -29,7 +28,6 @@ type Truck = {
     purchaseDate: string
 };
 
-
 type FormValues = {
     unique_id: string,
     make: string,
@@ -37,8 +35,6 @@ type FormValues = {
     isAvailable: boolean,
     purchaseDate: string
 }
-
-
 
 const resolver: Resolver<FormValues> = async (values) => {
     return {
@@ -91,7 +87,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     }
     // **************************
 
-
     const {
         register,
         handleSubmit,
@@ -101,20 +96,9 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     } = useForm<FormValues>({
         resolver,
         defaultValues: defaultValuesEdit || {},
-        // defaultValues: {
-        //     make: defaultValuesEdit.make,
-        //     isAvailable: defaultValuesEdit.isAvailable,
-        //     id: defaultValuesEdit.id,
-        //     purchaseDate: '',
-        // }
-        //         defaultValues: {
-        //         make: 'Komatsu',
-        //         isAvailable: true,
-        //         id: '12345',
-        //         purchaseDate: '',
-        // }
     });
 
+    // condition save
     const save = (data: Truck) => {
 
         if (location.pathname === '/edit') {
@@ -125,13 +109,14 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
         
         console.log(data);
-        NewItem(data);
+        newItem(data);
         console.log("data insert", data);
         reset();
         props.setIsDrawerOpen(false);
     };
+    // **************************
 
-    const NewItem = (truck: Truck) => {
+    const newItem = (truck: Truck) => {
 
         console.log('truck inserted', truck)
 
@@ -141,6 +126,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
         console.log('trucksList.GetList()', trucksList.GetList());
     };
+    // **************************
 
     const editItem = (truck: Truck) => {
         console.log('Here in editItem', truck);
@@ -148,6 +134,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         props.setListTrucks(trucksList.GetList());
 
     }
+    // **************************
 
 
 

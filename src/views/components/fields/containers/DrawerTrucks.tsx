@@ -1,8 +1,6 @@
 import * as React from "react";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import {Drawer, Button} from "@mui/material";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
-// import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,18 +25,10 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
 
-	// function createItem(){
-	// 	console.log('CREATE ITEM HERE');
-	// 	navigate("/create");
-
-	// }
 
 	useEffect(() => {
 		if (location.pathname  === '/edit'){
-			// const data = location.state;
 			setIsDrawerOpen(true);
-			// console.log('data', data);
-			// console.log('props.listTrucks', props.listTrucks);
 		}
 		
 	}, []);
