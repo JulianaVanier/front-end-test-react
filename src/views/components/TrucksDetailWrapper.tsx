@@ -111,7 +111,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         newItem(data);
         console.log("data insert", data);
         reset();
-        props.setIsDrawerOpen(false);
+
     };
     // **************************
 
@@ -122,6 +122,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         trucksList.AddTruck(truck);
         props.setListTrucks(trucksList.GetList());
         // setListTrucks(trucksList.GetList());
+        props.setIsDrawerOpen(false);
 
         console.log('trucksList.GetList()', trucksList.GetList());
     };
@@ -131,6 +132,9 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         console.log('Here in editItem', truck);
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
+        props.setIsDrawerOpen(false);
+        navigate('/');
+
 
     }
     // **************************
