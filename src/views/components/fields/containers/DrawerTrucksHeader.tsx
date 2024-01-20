@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type DrawerTrucksHeaderProps = {
 	setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -10,8 +11,13 @@ type DrawerTrucksHeaderProps = {
 
 const DrawerTrucksHeader: React.FC<DrawerTrucksHeaderProps> = (props) => {
 	// export default function DrawerTrucksHeader(props) {
+	const navigate = useNavigate();
 
 	function onClose() {
+		if (location.pathname  === '/edit'){
+            props.setIsDrawerOpen(false);
+            navigate('/');
+        }
 		props.setIsDrawerOpen(false);
 	}
 
