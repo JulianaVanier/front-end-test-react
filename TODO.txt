@@ -20,3 +20,9 @@ https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with
 
 
 Correct edit for item already created
+when select insert change the path
+Solve problem date picker
+add data requirements
+correct layout
+responsive
+test

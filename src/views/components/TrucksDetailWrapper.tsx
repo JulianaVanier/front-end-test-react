@@ -1,8 +1,7 @@
 import DrawerTrucksHeader from "./fields/containers/DrawerTrucksHeader";
 import { Box, Paper, Divider, Grid, AppBar, Toolbar, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, Controller, Resolver } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { Resolver } from "react-hook-form";
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -10,8 +9,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TruckClass } from "../../services/TruckList";
 
 import Switch from '@mui/material/Switch';
-import { Controller } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import dayjs from 'dayjs';
 
 
 type ServicesTrucksProps = {
@@ -206,7 +205,10 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                     name="purchaseDate"
                                     control={control}
                                     render={({ field: { value, onChange } }) => (
-                                        <DatePicker value={value} label="Purchase Date" onChange={onChange} />
+                                        <DatePicker 
+                                        value={value ? dayjs(value):null} 
+                                        label="Purchase Date" 
+                                        onChange={(date) => onChange(date ? date.format('YYYY-MM-DD') : null)} />
                                     )}
                                 />
                             </LocalizationProvider>
