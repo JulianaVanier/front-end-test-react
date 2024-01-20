@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
 // import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 type ServicesTrucksProps = {
@@ -22,7 +23,7 @@ type Truck =  {
 
 const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
 
@@ -53,7 +54,7 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 					<Drawer
 						anchor={anchor}
 						open={isDrawerOpen}
-						onClose={()=>{setIsDrawerOpen(false); console.log('close')}}
+						onClose={()=>{setIsDrawerOpen(false); navigate("/"); console.log('close')}}
 					>
 						<TrucksDetailWrapper listTrucks={props.listTrucks} setListTrucks={props.setListTrucks} setIsDrawerOpen={setIsDrawerOpen}></TrucksDetailWrapper>
 					</Drawer>
