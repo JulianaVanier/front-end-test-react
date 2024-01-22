@@ -12,6 +12,8 @@ import Switch from '@mui/material/Switch';
 import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
 
+import { LocalStorageManager } from "../../services/LocalStorageManager";
+
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
@@ -47,7 +49,15 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const trucksList: TruckClass = new TruckClass();
+    const storage: LocalStorageManager = new LocalStorageManager();
+
     trucksList.SetList([...props.listTrucks]);
+
+    // for validation datepicker
+    const today = dayjs();
+    const tomorrow = dayjs('2000-01-01');
+    // **************************
+
 
     const makeValues = [
         {
@@ -103,9 +113,10 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
             editItem(data);
             reset();
             props.setIsDrawerOpen(false);
+            navigate('/');
             return
         }
-        
+
         newItem(data);
         reset();
     };
@@ -123,8 +134,9 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
-        props.setIsDrawerOpen(false);
-        // navigate('/');
+        storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+        // props.setIsDrawerOpen(false);
+
     }
     // **************************
 
@@ -167,7 +179,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                         id="make"
                                         select
                                         label="Make"
-                                        defaultValue=""
+                                        defaultValue="Select"
                                         SelectProps={{
                                             native: true,
                                         }}
@@ -198,10 +210,15 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                     name="purchaseDate"
                                     control={control}
                                     render={({ field: { value, onChange } }) => (
-                                        <DatePicker 
-                                        value={value ? dayjs(value):null} 
-                                        label="Purchase Date" 
-                                        onChange={(date) => onChange(date ? date.format('YYYY-MM-DD') : null)} />
+                                        <DatePicker
+                                            value={value ? dayjs(value) : null}
+                                            label="Purchase Date"
+                                            defaultValue={today}
+                                            // disablePast
+                                            // minDate={'2000-01-01'}
+                                            minDate={tomorrow}
+                                            maxDate={today}
+                                            onChange={(date) => onChange(date ? date.format('YYYY-MM-DD') : null)} />
                                     )}
                                 />
                             </LocalizationProvider>
@@ -223,7 +240,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                     </Toolbar>
                 </AppBar>
             </form>
-
         </>
     );
 }
