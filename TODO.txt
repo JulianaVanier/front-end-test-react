@@ -1,11 +1,21 @@
-// -- TODO move both files into the project 
-// -- Inside app function add the new classe, inside the variable truckslist
-// -- Add manually to new trucks data
-// -- To create a new variable called storage using the LocalSTograge class
-// -- Add the list into the the storage using the key "trucks"
-// -- To check if the data has been saved into the storage
-// -- Try to pass (as prop maybe) to the component the trucks variable
-// -- Inside the component which display the trucks, try to see if receiving the data.
+// DONE - TODO move both files into the project 
+// DONE - Inside app function add the new classe, inside the variable truckslist
+// DONE - Add manually to new trucks data
+// DONE - To create a new variable called storage using the LocalSTograge class
+// DONE - Add the list into the the storage using the key "trucks"
+// DONE - To check if the data has been saved into the storage
+// DONE - Try to pass (as prop maybe) to the component the trucks variable
+// DONE - Inside the component which display the trucks, try to see if receiving the data.
+// DONE - Correct edit for item already created
+// DONE - Solve problem date picker
+// DONE - add data requirements
+// DONE - change path after edit
+
+add id requirements
+when select insert change the path
+correct layout
+responsive
+test
 
 https://stackoverflow.com/questions/60915262/how-to-pass-function-as-props-from-functional-parent-component-to-child
 
@@ -18,13 +28,3 @@ https://codesandbox.io/p/sandbox/react-hook-form-v7-validationschema-rm35t
 Pass data useNavigate
 https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object.
 
-
-DONE - Correct edit for item already created
-DONE - Solve problem date picker
-
-change path after edit
-when select insert change the path
-add data requirements
-correct layout
-responsive
-test

@@ -20,10 +20,14 @@ const router = createBrowserRouter([
 		</div>
 		),
 	},
-	// {
-	// 	path: "/create",
-	// 	element: (<div><TruckListView/></div>)
-	// }
+	{
+		path: "/create",
+		element: (
+			<div>
+				<App/>
+			</div>
+			),
+	},
 	{
 		path: "/edit",
 		element: (

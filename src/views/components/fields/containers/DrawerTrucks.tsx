@@ -38,7 +38,7 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		<>
 			{(['right'] as const).map((anchor) => (
 				<React.Fragment key={anchor}>
-					<Button variant="contained" onClick={()=>{setIsDrawerOpen(true)}}>
+					<Button variant="contained" onClick={()=>{setIsDrawerOpen(true); navigate('/create')}}>
 						Insert
 					</Button>
 					<Drawer

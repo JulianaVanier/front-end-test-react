@@ -118,6 +118,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         }
 
         newItem(data);
+        navigate('/');
         reset();
     };
     // **************************
