@@ -5,9 +5,9 @@ import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
 
 
-type TruckListViewProps = {
-	drawerAutoOpen: boolean
-}
+// type TruckListViewProps = {
+// 	drawerAutoOpen: boolean
+// }
 
 
 type Truck =  {
@@ -19,7 +19,7 @@ type Truck =  {
 };
 
 
-	const TruckListView: React.FC<TruckListViewProps> = (props) => {
+	const TruckListView = () => {
 	
 	const storage: LocalStorageManager = new LocalStorageManager();
 
@@ -35,7 +35,7 @@ type Truck =  {
 	return (
 		<>
 			<HeaderTrucks></HeaderTrucks>
-			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} drawerAutoOpen={props.drawerAutoOpen}></ServicesTrucks>
+			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} ></ServicesTrucks>
 			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
 		</>
 	)

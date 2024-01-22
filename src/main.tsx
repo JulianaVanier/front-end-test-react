@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 		path: "/edit",
 		element: (
 		<div>
-			<TruckListView drawerAutoOpen={true}/>
+			<TruckListView/>
 		</div>
 		)
 	}

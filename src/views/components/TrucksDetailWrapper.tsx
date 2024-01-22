@@ -14,6 +14,9 @@ import dayjs from 'dayjs';
 
 import { LocalStorageManager } from "../../services/LocalStorageManager";
 
+import SnackBarTrucks from "./fields/SnackBarTrucks";
+
+
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
@@ -98,7 +101,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        formState: { errors },
         reset,
         control,
     } = useForm<FormValues>({
@@ -119,6 +122,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
         newItem(data);
         navigate('/');
+        handleClick();
         reset();
     };
     // **************************
@@ -142,6 +146,14 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     // **************************
 
 
+    // snackbar
+
+    let snackBarOpen 
+
+    const handleClick = () => {
+
+     snackBarOpen = true;
+    }
 
     return (
         <>
@@ -191,6 +203,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                                 {option.label}
                                             </option>
                                         ))}
+                                        
                                     </TextField>
                                 </Box>
                             </Grid>
@@ -199,8 +212,16 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                     <TextField
                                         required
                                         label="Id"
-                                        // value={myTruck.id}
-                                        {...register('id', { required: true, maxLength: 6 })}
+                                        {...register('id', {
+                                        required: 'This field is required', 
+                                        maxLength: 6, 
+                                        pattern: {
+                                        value: /^[A-Za-z]{3}\d{3}$/,
+                                        message: 'Invalid format. It should be three letters followed by three digits.',
+                                        },
+                                    })}
+                                    error={Boolean(errors.id)}
+                                    helperText={errors.id?.message}
                                     />
                                 </Box>
                             </Grid>
@@ -215,8 +236,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                             value={value ? dayjs(value) : null}
                                             label="Purchase Date"
                                             defaultValue={today}
-                                            // disablePast
-                                            // minDate={'2000-01-01'}
                                             minDate={tomorrow}
                                             maxDate={today}
                                             onChange={(date) => onChange(date ? date.format('YYYY-MM-DD') : null)} />
@@ -241,6 +260,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                     </Toolbar>
                 </AppBar>
             </form>
+            <SnackBarTrucks snackBarOpen={snackBarOpen}></SnackBarTrucks>
         </>
     );
 }
