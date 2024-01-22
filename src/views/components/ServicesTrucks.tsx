@@ -6,6 +6,10 @@ import * as React from "react";
 type ServicesTrucksProps = {
     listTrucks: Truck[],
     setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+    isSnackBarOpen: boolean,
+	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	messageSnackBar: string,
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Truck = {
@@ -18,8 +22,7 @@ type Truck = {
 
 const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
-    const [isSnackBarOpen, setIsSnackBarOpen] = React.useState<boolean>(false);
-    const [messageSnackBar, setMessageSnackBar] = React.useState<string>("test");
+
 
     return (
         <>
@@ -27,17 +30,17 @@ const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
                 <DrawerTrucks
                     listTrucks={props.listTrucks}
                     setListTrucks={props.setListTrucks}
-                    isSnackBarOpen={isSnackBarOpen}
-                    setIsSnackBarOpen={setIsSnackBarOpen}
-                    messageSnackBar={messageSnackBar}
-                    setMessageSnackBar={setMessageSnackBar}
+                    isSnackBarOpen={props.isSnackBarOpen}
+                    setIsSnackBarOpen={props.setIsSnackBarOpen}
+                    messageSnackBar={props.messageSnackBar}
+                    setMessageSnackBar={props.setMessageSnackBar}
                     >
                 </DrawerTrucks>
                 <SnackBarTrucks
-                    isSnackBarOpen={isSnackBarOpen}
-                    setIsSnackBarOpen={setIsSnackBarOpen}
-                    messageSnackBar={messageSnackBar}
-                    setMessageSnackBar={setMessageSnackBar} >
+                    isSnackBarOpen={props.isSnackBarOpen}
+                    setIsSnackBarOpen={props.setIsSnackBarOpen}
+                    messageSnackBar={props.messageSnackBar}
+                    setMessageSnackBar={props.setMessageSnackBar} >
                 </SnackBarTrucks>
             </Box>
         </>

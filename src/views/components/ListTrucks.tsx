@@ -11,6 +11,7 @@ import { TruckClass } from "../../services/TruckList";
 // import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
+import * as React from 'react';
 
 
 
@@ -19,6 +20,10 @@ type ServicesTrucksProps = {
     listTrucks: Truck[],
     setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
 	// editItem: (truck: Truck) => void
+	isSnackBarOpen: boolean,
+	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	messageSnackBar: string,
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Truck = {
@@ -44,6 +49,8 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
 		props.setListTrucks(trucksList.GetList());
+		props.setIsSnackBarOpen(true);
+		props.setMessageSnackBar('The truck has been successfully deleted');
 	};
 	// ******************
 

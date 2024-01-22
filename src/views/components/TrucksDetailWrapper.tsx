@@ -139,7 +139,8 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         trucksList.AddTruck(truck);
         props.setListTrucks(trucksList.GetList());
         props.setIsDrawerOpen(false);
-        controlSnackBarOpen();
+        props.setIsSnackBarOpen(true);
+        props.setMessageSnackBar('The truck has been successfully saved');    
     };
     // **************************
 
@@ -148,8 +149,8 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
         storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
-        // props.setIsDrawerOpen(false);
-
+        // props.setIsSnackBarOpen(true);
+        // props.setMessageSnackBar('The machine has been successfully updated');    
     }
     // **************************
 
@@ -158,14 +159,11 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     // snackbar
 
 
-    const controlSnackBarOpen = () => {
+    // const controlSnackBarOpen = () => {
         
-        props.setIsSnackBarOpen(true);
-        props.setMessageSnackBar('Item saved');
-        console.log('props.setMessageSnackBar Aqui a mensagem no form', props.setMessageSnackBar)
-        console.log('isSnackBarOpen dentro form', props.isSnackBarOpen);
-        
-    }
+    //     props.setIsSnackBarOpen(true);
+    //     props.setMessageSnackBar('The truck has been successfully saved');        
+    // }
 
 
     return (

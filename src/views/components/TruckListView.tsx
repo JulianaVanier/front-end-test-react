@@ -3,6 +3,7 @@ import { LocalStorageManager } from '../../services/LocalStorageManager';
 import HeaderTrucks from './HeaderTrucks';
 import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
+import * as React from 'react';
 
 
 // type TruckListViewProps = {
@@ -21,6 +22,9 @@ type Truck =  {
 
 	const TruckListView = () => {
 	
+	const [isSnackBarOpen, setIsSnackBarOpen] = React.useState<boolean>(false);
+	const [messageSnackBar, setMessageSnackBar] = React.useState<string>("test");
+	
 	const storage: LocalStorageManager = new LocalStorageManager();
 
 	// Get inf from LocalStorage
@@ -35,8 +39,22 @@ type Truck =  {
 	return (
 		<>
 			<HeaderTrucks></HeaderTrucks>
-			<ServicesTrucks listTrucks={listTrucks} setListTrucks={setListTrucks} ></ServicesTrucks>
-			<ListTrucks listTrucks={listTrucks} setListTrucks={setListTrucks}></ListTrucks>
+			<ServicesTrucks 
+			listTrucks={listTrucks} 
+			setListTrucks={setListTrucks}
+			isSnackBarOpen={isSnackBarOpen}
+			setIsSnackBarOpen={setIsSnackBarOpen}
+			messageSnackBar={messageSnackBar}
+			setMessageSnackBar={setMessageSnackBar}
+			></ServicesTrucks>
+			<ListTrucks 
+			listTrucks={listTrucks} 
+			setListTrucks={setListTrucks}
+			isSnackBarOpen={isSnackBarOpen}
+			setIsSnackBarOpen={setIsSnackBarOpen}
+			messageSnackBar={messageSnackBar}
+			setMessageSnackBar={setMessageSnackBar}
+			></ListTrucks>
 		</>
 	)
 }
