@@ -6,7 +6,11 @@ import SnackbarProvider, { SnackbarOrigin } from '@mui/material/Snackbar';
 //   open: boolean;
 // }
 type SnackBarTrucksProps = {
-	snackBarOpen: boolean
+	isSnackBarOpen: boolean
+    setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>
+    messageSnackBar: string,
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
+
 }
 
 const anchor: SnackbarOrigin = {
@@ -18,7 +22,10 @@ const anchor: SnackbarOrigin = {
 // export default function SnackBarTrucks() {
 const SnackBarTrucks: React.FC<SnackBarTrucksProps> = (props) => {
 
-const [isSnackBarOpen, setIsSnackBarOpen] = React.useState<boolean>(false);
+
+console.log('props.snackBarOpen DENTR SNACKBAR', props.isSnackBarOpen);
+console.log('Aqui message', props.messageSnackBar);
+// setIsSnackBarOpen(props.snackBarOpen);
 
 // const status = props.snackBarOpen;
 
@@ -40,7 +47,7 @@ const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
       return;
     }
 
-    setIsSnackBarOpen(false);
+    props.setIsSnackBarOpen(false);
   };
 
 //   const buttons = (
@@ -58,10 +65,11 @@ const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
       {/* {buttons} */}
       <SnackbarProvider
         anchorOrigin={anchor}
-        open={isSnackBarOpen}
+        open={props.isSnackBarOpen}
+        // open={true}
         onClose={handleClose}
         autoHideDuration={5000}
-        message="I love snacks"
+        message={props.messageSnackBar}
         // key={vertical + horizontal}
       />
     </Box>

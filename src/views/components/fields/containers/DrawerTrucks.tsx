@@ -1,21 +1,25 @@
 import * as React from "react";
-import {Drawer, Button} from "@mui/material";
+import { Drawer, Button } from "@mui/material";
 import TrucksDetailWrapper from "../../TrucksDetailWrapper";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 type ServicesTrucksProps = {
-    listTrucks: Truck[],
-    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>
+	listTrucks: Truck[],
+	setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
+	isSnackBarOpen: boolean,
+	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	messageSnackBar: string,
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
 }
 
-type Truck =  {
-    unique_id: string,
-    make: string,
-    id: string,
-    isAvailable: boolean,
-    purchaseDate: string
+type Truck = {
+	unique_id: string,
+	make: string,
+	id: string,
+	isAvailable: boolean,
+	purchaseDate: string
 };
 
 
@@ -27,10 +31,10 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 
 	useEffect(() => {
-		if (location.pathname  === '/edit'){
+		if (location.pathname === '/edit') {
 			setIsDrawerOpen(true);
 		}
-		
+
 	}, []);
 
 
@@ -38,15 +42,24 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		<>
 			{(['right'] as const).map((anchor) => (
 				<React.Fragment key={anchor}>
-					<Button variant="contained" onClick={()=>{setIsDrawerOpen(true); navigate('/create')}}>
+					<Button variant="contained" onClick={() => { setIsDrawerOpen(true); navigate('/create') }}>
 						Insert
 					</Button>
 					<Drawer
 						anchor={anchor}
 						open={isDrawerOpen}
-						onClose={()=>{setIsDrawerOpen(false); navigate("/"); console.log('close')}}
+						onClose={() => { setIsDrawerOpen(false); navigate("/"); console.log('close') }}
 					>
-						<TrucksDetailWrapper listTrucks={props.listTrucks} setListTrucks={props.setListTrucks} setIsDrawerOpen={setIsDrawerOpen}></TrucksDetailWrapper>
+						<TrucksDetailWrapper
+							listTrucks={props.listTrucks}
+							setListTrucks={props.setListTrucks}
+							setIsDrawerOpen={setIsDrawerOpen}
+							isSnackBarOpen={props.isSnackBarOpen}
+							setIsSnackBarOpen={props.setIsSnackBarOpen}
+							messageSnackBar={props.messageSnackBar}
+							setMessageSnackBar={props.setMessageSnackBar}
+						>
+						</TrucksDetailWrapper>
 					</Drawer>
 				</React.Fragment>
 			))}

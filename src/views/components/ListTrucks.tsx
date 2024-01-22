@@ -11,9 +11,7 @@ import { TruckClass } from "../../services/TruckList";
 // import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { LocalStorageManager } from "../../services/LocalStorageManager";
-import { useState } from "react";
+
 
 
 

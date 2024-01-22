@@ -15,13 +15,18 @@ import dayjs from 'dayjs';
 import { LocalStorageManager } from "../../services/LocalStorageManager";
 
 import SnackBarTrucks from "./fields/SnackBarTrucks";
+import * as React from "react";
 
 
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],
     setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
-    setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    isSnackBarOpen: boolean,
+    setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    messageSnackBar: string,
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Truck = {
@@ -111,6 +116,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     // condition save
     const save = (data: Truck) => {
+ 
 
         if (location.pathname === '/edit') {
             editItem(data);
@@ -122,7 +128,8 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
         newItem(data);
         navigate('/');
-        handleClick();
+
+       
         reset();
     };
     // **************************
@@ -132,6 +139,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         trucksList.AddTruck(truck);
         props.setListTrucks(trucksList.GetList());
         props.setIsDrawerOpen(false);
+        controlSnackBarOpen();
     };
     // **************************
 
@@ -146,14 +154,19 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
     // **************************
 
 
+
     // snackbar
 
-    let snackBarOpen 
 
-    const handleClick = () => {
-
-     snackBarOpen = true;
+    const controlSnackBarOpen = () => {
+        
+        props.setIsSnackBarOpen(true);
+        props.setMessageSnackBar('Item saved');
+        console.log('props.setMessageSnackBar Aqui a mensagem no form', props.setMessageSnackBar)
+        console.log('isSnackBarOpen dentro form', props.isSnackBarOpen);
+        
     }
+
 
     return (
         <>
@@ -203,7 +216,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                                 {option.label}
                                             </option>
                                         ))}
-                                        
+
                                     </TextField>
                                 </Box>
                             </Grid>
@@ -213,15 +226,15 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                         required
                                         label="Id"
                                         {...register('id', {
-                                        required: 'This field is required', 
-                                        maxLength: 6, 
-                                        pattern: {
-                                        value: /^[A-Za-z]{3}\d{3}$/,
-                                        message: 'Invalid format. It should be three letters followed by three digits.',
-                                        },
-                                    })}
-                                    error={Boolean(errors.id)}
-                                    helperText={errors.id?.message}
+                                            required: 'This field is required',
+                                            maxLength: 6,
+                                            pattern: {
+                                                value: /^[A-Za-z]{3}\d{3}$/,
+                                                message: 'Invalid format. It should be three letters followed by three digits.',
+                                            },
+                                        })}
+                                        error={Boolean(errors.id)}
+                                        helperText={errors.id?.message}
                                     />
                                 </Box>
                             </Grid>
@@ -260,7 +273,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                     </Toolbar>
                 </AppBar>
             </form>
-            <SnackBarTrucks snackBarOpen={snackBarOpen}></SnackBarTrucks>
         </>
     );
 }
