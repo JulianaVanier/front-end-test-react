@@ -14,7 +14,7 @@ const DrawerTrucksHeader: React.FC<DrawerTrucksHeaderProps> = (props) => {
 	const navigate = useNavigate();
 
 	function onClose() {
-		if (location.pathname  === '/edit'){
+		if (location.pathname  === '/edit' || location.pathname  === '/create'){
             props.setIsDrawerOpen(false);
             navigate('/');
         }
