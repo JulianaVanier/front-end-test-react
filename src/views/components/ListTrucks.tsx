@@ -19,7 +19,9 @@ type ServicesTrucksProps = {
 	isSnackBarOpen: boolean,
 	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 	messageSnackBar: string,
-	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
+	openAlertDialog: boolean,
+    setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Truck = {
@@ -42,6 +44,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	// DELETE ITEM ******************
 	const DeleteItem = (unique_id: string) => {
 
+		props.setOpenAlertDialog(true);
 		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
 		props.setListTrucks(trucksList.GetList());

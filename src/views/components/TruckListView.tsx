@@ -62,6 +62,8 @@ const TruckListView = () => {
 				setIsSnackBarOpen={setIsSnackBarOpen}
 				messageSnackBar={messageSnackBar}
 				setMessageSnackBar={setMessageSnackBar}
+				openAlertDialog={openAlertDialog}
+				setOpenAlertDialog={setOpenAlertDialog}
 			></ListTrucks>
 			<SnackBarTrucks
 				isSnackBarOpen={isSnackBarOpen}
@@ -70,8 +72,8 @@ const TruckListView = () => {
 				setMessageSnackBar={setMessageSnackBar} >
 			</SnackBarTrucks>
 			<AlertDialogTrucks
-			openAlertDialog={openAlertDialog}
-			setOpenAlertDialog={setOpenAlertDialog}
+				openAlertDialog={openAlertDialog}
+				setOpenAlertDialog={setOpenAlertDialog}
 			></AlertDialogTrucks>
 			
 		</>

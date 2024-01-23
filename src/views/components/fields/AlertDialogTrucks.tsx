@@ -31,6 +31,7 @@ const AlertDialogTrucks: React.FC<AlertDialogTrucksProps> = (props) => {
       </Button> */}
       <Dialog
         open={props.openAlertDialog}
+        // onClose={handleClose}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
