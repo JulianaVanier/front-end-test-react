@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,12 +9,7 @@ import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
-// import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
-import * as React from 'react';
-
-
 
 
 type ServicesTrucksProps = {

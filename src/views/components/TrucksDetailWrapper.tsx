@@ -1,19 +1,15 @@
+import * as React from "react";
 import DrawerTrucksHeader from "./fields/containers/DrawerTrucksHeader";
-import { Box, Paper, Divider, Grid, AppBar, Toolbar, Button } from "@mui/material";
+import { Box, Paper, Divider, Grid, AppBar, Toolbar, Button, TextField } from "@mui/material";
 import { useForm, Controller, Resolver } from "react-hook-form";
-import { TextField } from "@mui/material";
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TruckClass } from "../../services/TruckList";
-
 import Switch from '@mui/material/Switch';
 import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
-
 import { LocalStorageManager } from "../../services/LocalStorageManager";
-import * as React from "react";
 
 
 

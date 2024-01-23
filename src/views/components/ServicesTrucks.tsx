@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
-import DrawerTrucks from "./fields/containers/DrawerTrucks";
 import * as React from "react";
+import DrawerTrucks from "./fields/containers/DrawerTrucks";
+import { Box } from "@mui/material";
+
 
 type ServicesTrucksProps = {
     listTrucks: Truck[],

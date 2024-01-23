@@ -1,9 +1,9 @@
+import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { LocalStorageManager } from '../../services/LocalStorageManager';
 import HeaderTrucks from './HeaderTrucks';
 import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
-import * as React from 'react';
 import SnackBarTrucks from './fields/SnackBarTrucks';
 
 // type TruckListViewProps = {
