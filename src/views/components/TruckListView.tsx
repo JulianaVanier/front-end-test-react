@@ -5,6 +5,7 @@ import HeaderTrucks from './HeaderTrucks';
 import ServicesTrucks from './ServicesTrucks';
 import ListTrucks from './ListTrucks';
 import SnackBarTrucks from './fields/SnackBarTrucks';
+import AlertDialogTrucks from './fields/AlertDialogTrucks';
 
 // type TruckListViewProps = {
 //     isSnackBarOpen: boolean,
@@ -29,6 +30,10 @@ const TruckListView = () => {
 	const [messageSnackBar, setMessageSnackBar] = React.useState<string>("");
 
 	const storage: LocalStorageManager = new LocalStorageManager();
+
+	// Alert dialog
+	const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
+	// ******************
 
 	// Get inf from LocalStorage
 	const storedTrucks = storage.GetAsJSON("Trucks");
@@ -64,6 +69,11 @@ const TruckListView = () => {
 				messageSnackBar={messageSnackBar}
 				setMessageSnackBar={setMessageSnackBar} >
 			</SnackBarTrucks>
+			<AlertDialogTrucks
+			openAlertDialog={openAlertDialog}
+			setOpenAlertDialog={setOpenAlertDialog}
+			></AlertDialogTrucks>
+			
 		</>
 	)
 }
