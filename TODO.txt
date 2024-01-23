@@ -12,11 +12,12 @@
 // DONE - change path after edit
 // DONE - when select insert change the path
 
-apply snackbar
+apply snackbar for edit
 add id requirements
 correct layout
 responsive
 test
+create dialog to delete action
 
 https://stackoverflow.com/questions/60915262/how-to-pass-function-as-props-from-functional-parent-component-to-child
 

@@ -13,8 +13,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
 
 import { LocalStorageManager } from "../../services/LocalStorageManager";
-
-import SnackBarTrucks from "./fields/SnackBarTrucks";
 import * as React from "react";
 
 
@@ -121,7 +119,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         if (location.pathname === '/edit') {
             editItem(data);
             reset();
-            props.setIsDrawerOpen(false);
+            props.setIsDrawerOpen(false);   
             navigate('/');
             return
         }
@@ -149,22 +147,11 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         trucksList.EditTruck(truck);
         props.setListTrucks(trucksList.GetList());
         storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
-        // props.setIsSnackBarOpen(true);
-        // props.setMessageSnackBar('The machine has been successfully updated');    
+        props.setIsSnackBarOpen(true);
+        props.setMessageSnackBar('The machine has been successfully updated'); 
+
     }
     // **************************
-
-
-
-    // snackbar
-
-
-    // const controlSnackBarOpen = () => {
-        
-    //     props.setIsSnackBarOpen(true);
-    //     props.setMessageSnackBar('The truck has been successfully saved');        
-    // }
-
 
     return (
         <>
@@ -190,6 +177,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                         <Controller
                             name="isAvailable"
                             control={control}
+                            defaultValue={true}
                             render={({ field: { value } }) => (
                                 <Switch checked={value} {...register('isAvailable')} name="isAvailable" />
                             )}

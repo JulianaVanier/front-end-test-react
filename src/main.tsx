@@ -33,6 +33,7 @@ const router = createBrowserRouter([
 		element: (
 		<div>
 			<TruckListView/>
+			{/* <App/> */}
 		</div>
 		)
 	}
@@ -44,11 +45,3 @@ root.render(
 		<RouterProvider router={router} />
 	</React.StrictMode>
 );
-
-
-
-
-// <React.StrictMode>
-// 	<App />
-// </React.StrictMode>,
-

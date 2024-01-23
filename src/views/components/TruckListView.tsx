@@ -6,11 +6,6 @@ import ListTrucks from './ListTrucks';
 import * as React from 'react';
 
 
-// type TruckListViewProps = {
-// 	drawerAutoOpen: boolean
-// }
-
-
 type Truck =  {
     unique_id: string;
     make: string;
@@ -23,7 +18,7 @@ type Truck =  {
 	const TruckListView = () => {
 	
 	const [isSnackBarOpen, setIsSnackBarOpen] = React.useState<boolean>(false);
-	const [messageSnackBar, setMessageSnackBar] = React.useState<string>("test");
+	const [messageSnackBar, setMessageSnackBar] = React.useState<string>("");
 	
 	const storage: LocalStorageManager = new LocalStorageManager();
 
