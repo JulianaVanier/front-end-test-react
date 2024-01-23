@@ -33,7 +33,6 @@ const router = createBrowserRouter([
 		element: (
 		<div>
 			<TruckListView/>
-			{/* <App/> */}
 		</div>
 		)
 	}

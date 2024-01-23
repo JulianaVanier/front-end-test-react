@@ -11,9 +11,9 @@
 // DONE - add data requirements
 // DONE - change path after edit
 // DONE - when select insert change the path
+// DONE - add id requirements
 
 apply snackbar for edit
-add id requirements
 correct layout
 responsive
 test

@@ -61,7 +61,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 
     // for validation datepicker
     const today = dayjs();
-    const tomorrow = dayjs('2000-01-01');
+    const limit = dayjs('2000-01-01');
     // **************************
 
 
@@ -108,9 +108,12 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         reset,
         control,
     } = useForm<FormValues>({
-        resolver,
+        // resolver,
         defaultValues: defaultValuesEdit || {},
     });
+    const onSubmit = (data) => {
+        save(data);
+    }
 
     // condition save
     const save = (data: Truck) => {
@@ -157,7 +160,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         <>
             <DrawerTrucksHeader setIsDrawerOpen={props.setIsDrawerOpen} />
 
-            <form >
+            <form onSubmit={handleSubmit(onSubmit)} >
 
                 <Box
                     display={"flex"}
@@ -212,16 +215,15 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                         required
                                         label="Id"
                                         {...register('id', {
-                                            required: 'This field is required',
+                                            required: true,
                                             maxLength: 6,
                                             pattern: {
-                                                value: /^[A-Za-z]{3}\d{3}$/,
-                                                message: 'Invalid format. It should be three letters followed by three digits.',
-                                            },
+                                            value: /^[A-Za-z]{3}\d{3}$/,
+                                            message: "Invalid id: 3 letters + 3 digits. Ex: NEW123"
+                                            } 
                                         })}
-                                        error={Boolean(errors.id)}
-                                        helperText={errors.id?.message}
                                     />
+                                    {errors.id && <div><small>{errors.id.message}</small></div>}
                                 </Box>
                             </Grid>
                         </Grid>
@@ -235,7 +237,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                             value={value ? dayjs(value) : null}
                                             label="Purchase Date"
                                             defaultValue={today}
-                                            minDate={tomorrow}
+                                            minDate={limit}
                                             maxDate={today}
                                             onChange={(date) => onChange(date ? date.format('YYYY-MM-DD') : null)} />
                                     )}
@@ -252,7 +254,6 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                         <Button
                             variant="contained"
                             type="submit"
-                            onClick={handleSubmit((data) => save(data))}
                         >
                             Save
                         </Button>

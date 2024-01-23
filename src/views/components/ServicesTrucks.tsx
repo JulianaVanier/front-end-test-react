@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import DrawerTrucks from "./fields/containers/DrawerTrucks";
-import SnackBarTrucks from "./fields/SnackBarTrucks";
 import * as React from "react";
 
 type ServicesTrucksProps = {
@@ -36,12 +35,6 @@ const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
                     setMessageSnackBar={props.setMessageSnackBar}
                     >
                 </DrawerTrucks>
-                <SnackBarTrucks
-                    isSnackBarOpen={props.isSnackBarOpen}
-                    setIsSnackBarOpen={props.setIsSnackBarOpen}
-                    messageSnackBar={props.messageSnackBar}
-                    setMessageSnackBar={props.setMessageSnackBar} >
-                </SnackBarTrucks>
             </Box>
         </>
     );
