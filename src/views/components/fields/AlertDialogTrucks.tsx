@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 type AlertDialogTrucksProps = {
     openAlertDialog: boolean,
     setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
+    deleteItemAlert: boolean,
+    setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -16,12 +18,12 @@ type AlertDialogTrucksProps = {
 //   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 const AlertDialogTrucks: React.FC<AlertDialogTrucksProps> = (props) => {
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
-    setOpen(false);
+    props.setOpenAlertDialog(false);
   };
 
   return (
@@ -46,7 +48,7 @@ const AlertDialogTrucks: React.FC<AlertDialogTrucksProps> = (props) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={() =>{props.setDeleteItemAlert(true); props.setOpenAlertDialog(false)}} autoFocus>
             Confirm
           </Button>
         </DialogActions>

@@ -33,6 +33,7 @@ const TruckListView = () => {
 
 	// Alert dialog
 	const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
+	const [deleteItemAlert, setDeleteItemAlert] = React.useState(false);
 	// ******************
 
 	// Get inf from LocalStorage
@@ -64,6 +65,8 @@ const TruckListView = () => {
 				setMessageSnackBar={setMessageSnackBar}
 				openAlertDialog={openAlertDialog}
 				setOpenAlertDialog={setOpenAlertDialog}
+				deleteItemAlert={deleteItemAlert}
+				setDeleteItemAlert={setDeleteItemAlert}
 			></ListTrucks>
 			<SnackBarTrucks
 				isSnackBarOpen={isSnackBarOpen}
@@ -74,6 +77,8 @@ const TruckListView = () => {
 			<AlertDialogTrucks
 				openAlertDialog={openAlertDialog}
 				setOpenAlertDialog={setOpenAlertDialog}
+				deleteItemAlert={deleteItemAlert}
+				setDeleteItemAlert={setDeleteItemAlert}
 			></AlertDialogTrucks>
 			
 		</>

@@ -21,7 +21,9 @@ type ServicesTrucksProps = {
 	messageSnackBar: string,
 	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
 	openAlertDialog: boolean,
-    setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
+	deleteItemAlert: boolean,
+    setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Truck = {
@@ -45,11 +47,14 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	const DeleteItem = (unique_id: string) => {
 
 		props.setOpenAlertDialog(true);
+		
+		if (props.deleteItemAlert===true){
 		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
 		props.setListTrucks(trucksList.GetList());
 		props.setIsSnackBarOpen(true);
 		props.setMessageSnackBar('The truck has been successfully deleted');
+	}
 	};
 	// ******************
 
