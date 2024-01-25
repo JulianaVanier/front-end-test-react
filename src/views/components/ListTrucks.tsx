@@ -7,11 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
-import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
 import { useNavigate } from "react-router-dom";
 import { LocalStorageManager } from '../../services/LocalStorageManager';
-
+import { Stack } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeIcon from '@mui/icons-material/Mode';
 
 type ServicesTrucksProps = {
 	listTrucks: Truck[],
@@ -62,8 +64,11 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 			props.setIsSnackBarOpen(true);
 			props.setMessageSnackBar('The truck has been successfully deleted');
 		}
+
 	};
 	// ******************
+
+
 
 	// EDIT ITEM ******************
 	const EditItem = (truck: Truck) => {
@@ -77,7 +82,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell sx={{ color: "white" }}>Make</TableCell>
+							<TableCell align="center">Make</TableCell>
 							<TableCell align="center">Id</TableCell>
 							<TableCell align="center">Is Available</TableCell>
 							<TableCell align="center">Purchase Date</TableCell>
@@ -89,7 +94,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 						{props.listTrucks.map((item: Truck) => (
 							<TableRow
 								key={item.unique_id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+								// sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">
 									{item.make}
@@ -98,15 +103,25 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 								<TableCell align="center">{item.isAvailable ? "Yes" : "No"}</TableCell>
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
-									<Button onClick={() => { EditItem(item); }}>Edit</Button>
-									<Button onClick={() => { DeleteItem(item.unique_id); }}>Delete</Button>
+									<Stack spacing={2} direction="row">
+										{/* <Button onClick={() => { EditItem(item); }}>Edit</Button>
+										<Button onClick={() => { DeleteItem(item.unique_id); }}>Delete</Button> */}
+
+										<IconButton  aria-label="edit">
+											<ModeIcon onClick={() => { EditItem(item); }}></ModeIcon>
+										</IconButton>
+
+										<IconButton  aria-label="delete">
+											<DeleteIcon onClick={() => { DeleteItem(item.unique_id); }}></DeleteIcon>
+										</IconButton>
+									</Stack>
 								</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</Box>
+		</Box >
 	);
 }
 export default ListTrucks;

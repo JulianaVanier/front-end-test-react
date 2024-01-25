@@ -7,10 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 type AlertDialogTrucksProps = {
-    openAlertDialog: boolean,
-    setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
-    deleteItemAlert: boolean,
-    setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
+	openAlertDialog: boolean,
+	setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
+	deleteItemAlert: boolean,
+	setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -18,39 +18,39 @@ type AlertDialogTrucksProps = {
 //   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 const AlertDialogTrucks: React.FC<AlertDialogTrucksProps> = (props) => {
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+	// const handleClickOpen = () => {
+	//   setOpen(true);
+	// };
 
-  const handleClose = () => {
-    props.setOpenAlertDialog(false);
-  };
+	const handleClose = () => {
+		props.setOpenAlertDialog(false);
+	};
 
-  return (
-    <React.Fragment>
-      <Dialog
-        open={props.openAlertDialog}
-        // onClose={handleClose}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Confirme Delete"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete this item?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() =>{props.setDeleteItemAlert(true); props.setOpenAlertDialog(false)}} autoFocus>
-            Confirm
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
-  );
-} 
+	return (
+		<React.Fragment>
+			<Dialog
+				open={props.openAlertDialog}
+				// onClose={handleClose}
+				onClose={handleClose}
+				aria-labelledby="alert-dialog-title"
+				aria-describedby="alert-dialog-description"
+			>
+				<DialogTitle id="alert-dialog-title">
+					{"Confirme Delete"}
+				</DialogTitle>
+				<DialogContent>
+					<DialogContentText id="alert-dialog-description">
+						Are you sure you want to delete this item?
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose}>Cancel</Button>
+					<Button onClick={() => { props.setDeleteItemAlert(true); props.setOpenAlertDialog(false) }} autoFocus>
+						Confirm
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</React.Fragment>
+	);
+}
 export default AlertDialogTrucks
