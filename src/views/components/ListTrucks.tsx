@@ -15,6 +15,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeIcon from '@mui/icons-material/Mode';
 
+
+import { tableCellClasses } from '@mui/material/TableCell';
+import { styled } from '@mui/material/styles';
+
+
 type ServicesTrucksProps = {
 	listTrucks: Truck[],
 	setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
@@ -36,6 +41,17 @@ type Truck = {
 	isAvailable: boolean,
 	purchaseDate: string
 }
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+	[`&.${tableCellClasses.head}`]: {
+		backgroundColor: theme.palette.primary.main,
+		color: theme.palette.common.white,
+	},
+	[`&.${tableCellClasses.body}`]: {
+		fontSize: 14,
+	},
+}));
+
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
@@ -79,43 +95,43 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	return (
 		<Box sx={{ width: "100%" }}>
 			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="simple table">
+				<Table sx={{ minWidth: 650 }} aria-label="a dense table">
 					<TableHead>
 						<TableRow>
-							<TableCell align="center">Make</TableCell>
-							<TableCell align="center">Id</TableCell>
-							<TableCell align="center">Is Available</TableCell>
-							<TableCell align="center">Purchase Date</TableCell>
-							<TableCell align="center">Action</TableCell>
+							<StyledTableCell align="center">Make</StyledTableCell>
+							<StyledTableCell align="center">Id</StyledTableCell>
+							<StyledTableCell align="center">Is Available</StyledTableCell>
+							<StyledTableCell align="center">Purchase Date</StyledTableCell>
+							<StyledTableCell align="center">Action</StyledTableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{/* {props.listTrucks.map((item: Truck) => ( */}
 						{props.listTrucks.map((item: Truck) => (
-							<TableRow
+							<TableRow hover 
 								key={item.unique_id}
-								// sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+							// sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
-								<TableCell component="th" scope="row">
+								<StyledTableCell component="th" scope="row">
 									{item.make}
-								</TableCell>
-								<TableCell align="center">{item.id}</TableCell>
-								<TableCell align="center">{item.isAvailable ? "Yes" : "No"}</TableCell>
-								<TableCell align="center">{item.purchaseDate}</TableCell>
-								<TableCell align="center">
-									<Stack spacing={2} direction="row">
+								</StyledTableCell>
+								<StyledTableCell align="center">{item.id}</StyledTableCell>
+								<StyledTableCell align="center">{item.isAvailable ? "Yes" : "No"}</StyledTableCell>
+								<StyledTableCell align="center">{item.purchaseDate}</StyledTableCell>
+								<StyledTableCell align="center">
+									<Stack spacing={2} direction="row" display='flex' justifyContent='flex-end' >
 										{/* <Button onClick={() => { EditItem(item); }}>Edit</Button>
 										<Button onClick={() => { DeleteItem(item.unique_id); }}>Delete</Button> */}
 
-										<IconButton  aria-label="edit">
+										<IconButton aria-label="edit">
 											<ModeIcon onClick={() => { EditItem(item); }}></ModeIcon>
 										</IconButton>
 
-										<IconButton  aria-label="delete">
+										<IconButton aria-label="delete">
 											<DeleteIcon onClick={() => { DeleteItem(item.unique_id); }}></DeleteIcon>
 										</IconButton>
 									</Stack>
-								</TableCell>
+								</StyledTableCell>
 							</TableRow>
 						))}
 					</TableBody>

@@ -168,11 +168,12 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                         sx={{
                             p: "30px",
                             // width: "100%",
-                            height: "20rem",
+                            // height: "20rem",
                             overflowY: "auto",
                             flexGrow: 1,
                         }}
                     >
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-16px' }}>
                         <Controller
                             name="isAvailable"
                             control={control}
@@ -181,8 +182,9 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                 <Switch checked={value} {...register('isAvailable')} name="isAvailable" />
                             )}
                         />
-                        <Divider sx={{ fontWeight: "bold" }}>Informations</Divider>
-                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                        </Box>
+                        <Divider sx={{ fontWeight: "bold", fontSize:20, color: "grey" }}>Informations</Divider>
+                        <Grid container spacing={12}>
                             <Grid item xs={6}>
                                 {/* <SelectFieldTrucks /> */}
                                 <Box>
@@ -223,6 +225,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                 </Box>
                             </Grid>
                         </Grid>
+                        <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <Controller
@@ -241,6 +244,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                             </LocalizationProvider>
                         </Grid>
                         <Grid item xs={6}></Grid>
+                        </Grid>
                     </Paper>
                 </Box>
                 <AppBar position="static">

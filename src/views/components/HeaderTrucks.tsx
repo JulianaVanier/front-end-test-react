@@ -9,7 +9,7 @@ export default function HeaderTrucks() {
 				variant="h5"
 				color="text.primary"
 				sx={{
-					alignSelf: "left",
+					m: 4,
 					padding: "0.7rem",
 				}}
 			>

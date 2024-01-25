@@ -1,6 +1,6 @@
 import * as React from "react";
 import DrawerTrucks from "./fields/containers/DrawerTrucks";
-import { Box } from "@mui/material";
+
 
 
 type ServicesTrucksProps = {
@@ -26,7 +26,7 @@ const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
     return (
         <>
-            <Box sx={{ width: '100%', paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
+            {/* <Box sx={{ width: '100%', paddingTop: '0.3rem', paddingBottom: '0.3rem' }}> */}
                 <DrawerTrucks
                     listTrucks={props.listTrucks}
                     setListTrucks={props.setListTrucks}
@@ -36,7 +36,7 @@ const ServicesTrucks: React.FC<ServicesTrucksProps> = (props) => {
                     setMessageSnackBar={props.setMessageSnackBar}
                     >
                 </DrawerTrucks>
-            </Box>
+            {/* </Box> */}
         </>
     );
 }
