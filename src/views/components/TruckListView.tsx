@@ -24,7 +24,6 @@ type Truck = {
 
 
 const TruckListView = () => {
-// const TruckListView: React.FC<TruckListViewProps> = (props) => {
 
 	const [isSnackBarOpen, setIsSnackBarOpen] = React.useState<boolean>(false);
 	const [messageSnackBar, setMessageSnackBar] = React.useState<string>("");

@@ -10,28 +10,29 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/base";
 import { TruckClass } from "../../services/TruckList";
 import { useNavigate } from "react-router-dom";
+import { LocalStorageManager } from '../../services/LocalStorageManager';
 
 
 type ServicesTrucksProps = {
-    listTrucks: Truck[],
-    setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
+	listTrucks: Truck[],
+	setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
 	// editItem: (truck: Truck) => void
 	isSnackBarOpen: boolean,
 	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 	messageSnackBar: string,
 	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
 	openAlertDialog: boolean,
-    setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
+	setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
 	deleteItemAlert: boolean,
-    setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
+	setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Truck = {
-    unique_id: string,
-    make: string,
-    id: string,
-    isAvailable: boolean,
-    purchaseDate: string
+	unique_id: string,
+	make: string,
+	id: string,
+	isAvailable: boolean,
+	purchaseDate: string
 }
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
@@ -42,26 +43,32 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 
 	const trucksList: TruckClass = new TruckClass();
+	const storage: LocalStorageManager = new LocalStorageManager();
+
 
 	// DELETE ITEM ******************
 	const DeleteItem = (unique_id: string) => {
+		console.log('unique_id', unique_id)
 
 		props.setOpenAlertDialog(true);
-		
-		if (props.deleteItemAlert===true){
-		trucksList.SetList([...props.listTrucks]);
-		trucksList.RemoveTruck(unique_id);
-		props.setListTrucks(trucksList.GetList());
-		props.setIsSnackBarOpen(true);
-		props.setMessageSnackBar('The truck has been successfully deleted');
-	}
+		console.log('props.deleteItemAlert', props.deleteItemAlert)
+
+		if (props.deleteItemAlert === true) {
+			console.log('delete Item alert', props.deleteItemAlert);
+			trucksList.SetList([...props.listTrucks]);
+			trucksList.RemoveTruck(unique_id);
+			props.setListTrucks(trucksList.GetList());
+			storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+			props.setIsSnackBarOpen(true);
+			props.setMessageSnackBar('The truck has been successfully deleted');
+		}
 	};
 	// ******************
 
 	// EDIT ITEM ******************
-		const EditItem = (truck: Truck) => {
-		navigate('/edit', {state: truck});
-    };
+	const EditItem = (truck: Truck) => {
+		navigate('/edit', { state: truck });
+	};
 	// ******************
 
 	return (
@@ -88,11 +95,11 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 									{item.make}
 								</TableCell>
 								<TableCell align="center">{item.id}</TableCell>
-								<TableCell align="center">{ item.isAvailable ? "Yes" : "No"}</TableCell>
+								<TableCell align="center">{item.isAvailable ? "Yes" : "No"}</TableCell>
 								<TableCell align="center">{item.purchaseDate}</TableCell>
 								<TableCell align="center">
-									<Button onClick={() => { EditItem(item);}}>Edit</Button>
-									<Button onClick={() => { DeleteItem(item.unique_id);}}>Delete</Button>
+									<Button onClick={() => { EditItem(item); }}>Edit</Button>
+									<Button onClick={() => { DeleteItem(item.unique_id); }}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}
