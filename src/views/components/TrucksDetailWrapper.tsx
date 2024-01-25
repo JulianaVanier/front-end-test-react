@@ -1,7 +1,7 @@
 import * as React from "react";
 import DrawerTrucksHeader from "./fields/containers/DrawerTrucksHeader";
 import { Box, Paper, Divider, Grid, AppBar, Toolbar, Button, TextField } from "@mui/material";
-import { useForm, Controller, Resolver } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -20,7 +20,7 @@ type ServicesTrucksProps = {
     isSnackBarOpen: boolean,
     setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
     messageSnackBar: string,
-	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
 }
 
 type Truck = {
@@ -39,12 +39,12 @@ type FormValues = {
     purchaseDate: string
 }
 
-const resolver: Resolver<FormValues> = async (values) => {
-    return {
-        values: values,
-        errors: {}
-    }
-}
+// const resolver: Resolver<FormValues> = async (values) => {
+//     return {
+//         values: values,
+//         errors: {}
+//     }
+// }
 
 const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
 

@@ -11,7 +11,7 @@ type ServicesTrucksProps = {
 	isSnackBarOpen: boolean,
 	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 	messageSnackBar: string,
-	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
 }
 
 type Truck = {
