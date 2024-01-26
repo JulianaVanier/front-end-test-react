@@ -220,6 +220,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                             message: "Invalid id: 3 letters + 3 digits. Ex: NEW123"
                                             } 
                                         })}
+                                        helperText={'Should be 3 letters + 3digits'}
                                     />
                                     {errors.id && <div><small>{errors.id.message}</small></div>}
                                 </Box>

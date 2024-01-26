@@ -68,12 +68,13 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	const trucksList: TruckClass = new TruckClass();
 	const storage: LocalStorageManager = new LocalStorageManager();
 
-	
+
 
 	useEffect (() => {
-		console.log('props update inside useEffect', props.deleteItemAlert);
-		console.log('Unique id Inside useEffect', props.uniqueIdDelete);
-		handleDeleteItem(props.uniqueIdDelete);
+		if(props.deleteItemAlert===true){
+			handleDeleteItem(props.uniqueIdDelete)
+		}
+
 	}, [props.deleteItemAlert]);
 
 	// DELETE ITEM ******************
@@ -82,7 +83,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	// 	props.setuniqueIdDelete(unique_id);
 	// 	console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
 	// 	props.setOpenAlertDialog(true);
-		
+
 	// 	console.log('props.deleteItemAlert', props.deleteItemAlert)
 
 	// 	if (props.deleteItemAlert === true) {
@@ -97,13 +98,25 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	// };
 
 
-	const DeleteItem = (unique_id: string) => {
+	const DeleteItem = async (unique_id: string) => {
 
 		props.setuniqueIdDelete(unique_id);
 		console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
 		props.setOpenAlertDialog(true);
-		
+
 		console.log('props.deleteItemAlert', props.deleteItemAlert)
+
+
+		// if (props.deleteItemAlert === true) {
+		// 	console.log('props.deleteItemAlert inside condition before await', props.deleteItemAlert)
+
+		// 	await handleDeleteItem(props.uniqueIdDelete);
+		// 	props.setIsSnackBarOpen(true);
+		// 	props.setMessageSnackBar('The truck has been successfully deleted');
+
+		// }
+
+
 
 		// if (props.deleteItemAlert === true) {
 		// 	console.log('delete Item alert', props.deleteItemAlert);
@@ -115,7 +128,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		// }
 
 	};
-	
+
 	// ******************
 	// const onDelete = (unique_id: string) => {
 	// 	console.log('unique_id', unique_id)
@@ -132,6 +145,10 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		props.setListTrucks(trucksList.GetList());
 		storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 		props.setDeleteItemAlert(false);
+		props.setIsSnackBarOpen(true);
+		props.setMessageSnackBar('The truck has been successfully deleted');
+
+
 	};
 
 	// EDIT ITEM ******************
@@ -158,7 +175,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 					<TableBody>
 						{/* {props.listTrucks.map((item: Truck) => ( */}
 						{props.listTrucks.map((item: Truck) => (
-							<TableRow hover 
+							<TableRow hover
 								key={item.unique_id}
 							// sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
@@ -178,9 +195,9 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 										</IconButton>
 
 										<IconButton aria-label="delete">
-											<DeleteIcon onClick={() => { 
-												DeleteItem(item.unique_id); 
-												}}></DeleteIcon>
+											<DeleteIcon onClick={() => {
+												DeleteItem(item.unique_id);
+											}}></DeleteIcon>
 										</IconButton>
 									</Stack>
 								</StyledTableCell>
