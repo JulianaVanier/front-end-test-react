@@ -14,6 +14,8 @@ import { Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeIcon from '@mui/icons-material/Mode';
+import { useEffect } from 'react';
+
 
 
 import { tableCellClasses } from '@mui/material/TableCell';
@@ -31,7 +33,9 @@ type ServicesTrucksProps = {
 	openAlertDialog: boolean,
 	setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
 	deleteItemAlert: boolean,
-	setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>
+	setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>,
+	uniqueIdDelete: string,
+	setuniqueIdDelete: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Truck = {
@@ -55,6 +59,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
+
 	// const location = useLocation();
 	const navigate = useNavigate();
 	// const history = useHistory();
@@ -63,34 +68,79 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 	const trucksList: TruckClass = new TruckClass();
 	const storage: LocalStorageManager = new LocalStorageManager();
 
+	
+
+	useEffect (() => {
+		console.log('props update inside useEffect', props.deleteItemAlert);
+		console.log('Unique id Inside useEffect', props.uniqueIdDelete);
+		handleDeleteItem(props.uniqueIdDelete);
+	}, [props.deleteItemAlert]);
 
 	// DELETE ITEM ******************
-	const DeleteItem = (unique_id: string) => {
-		console.log('unique_id', unique_id)
+	// const DeleteItem = async (unique_id: string) => {
 
+	// 	props.setuniqueIdDelete(unique_id);
+	// 	console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
+	// 	props.setOpenAlertDialog(true);
+		
+	// 	console.log('props.deleteItemAlert', props.deleteItemAlert)
+
+	// 	if (props.deleteItemAlert === true) {
+	// 		console.log('delete Item alert', props.deleteItemAlert);
+
+	// 	await handleDeleteItem(props.uniqueIdDelete);
+
+	// 	props.setIsSnackBarOpen(true);
+	// 	props.setMessageSnackBar('The truck has been successfully deleted');
+	// 	}
+
+	// };
+
+
+	const DeleteItem = (unique_id: string) => {
+
+		props.setuniqueIdDelete(unique_id);
+		console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
 		props.setOpenAlertDialog(true);
+		
 		console.log('props.deleteItemAlert', props.deleteItemAlert)
 
-		if (props.deleteItemAlert === true) {
-			console.log('delete Item alert', props.deleteItemAlert);
-			trucksList.SetList([...props.listTrucks]);
-			trucksList.RemoveTruck(unique_id);
-			props.setListTrucks(trucksList.GetList());
-			storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
-			props.setIsSnackBarOpen(true);
-			props.setMessageSnackBar('The truck has been successfully deleted');
-		}
+		// if (props.deleteItemAlert === true) {
+		// 	console.log('delete Item alert', props.deleteItemAlert);
+
+		// handleDeleteItem(props.uniqueIdDelete);
+
+		// props.setIsSnackBarOpen(true);
+		// props.setMessageSnackBar('The truck has been successfully deleted');
+		// }
 
 	};
+	
 	// ******************
+	// const onDelete = (unique_id: string) => {
+	// 	console.log('unique_id', unique_id)
+	// 	uniqueIdDelete = unique_id;
+	// 	console.log('uniqueIdDelete', uniqueIdDelete)
+	// 	props.setOpenAlertDialog(true);
 
+	// };
 
+	const handleDeleteItem = async (unique_id: string) => {
+		console.log('unique_id inside handleDeleteItem', unique_id);
+		trucksList.SetList([...props.listTrucks]);
+		trucksList.RemoveTruck(unique_id);
+		props.setListTrucks(trucksList.GetList());
+		storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+		props.setDeleteItemAlert(false);
+	};
 
 	// EDIT ITEM ******************
 	const EditItem = (truck: Truck) => {
 		navigate('/edit', { state: truck });
 	};
 	// ******************
+
+	// let uniqueIdDelete: string;
 
 	return (
 		<Box sx={{ width: "100%" }}>
@@ -128,7 +178,9 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 										</IconButton>
 
 										<IconButton aria-label="delete">
-											<DeleteIcon onClick={() => { DeleteItem(item.unique_id); }}></DeleteIcon>
+											<DeleteIcon onClick={() => { 
+												DeleteItem(item.unique_id); 
+												}}></DeleteIcon>
 										</IconButton>
 									</Stack>
 								</StyledTableCell>
