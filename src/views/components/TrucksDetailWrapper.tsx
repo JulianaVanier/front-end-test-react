@@ -137,7 +137,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         props.setListTrucks(trucksList.GetList());
         props.setIsDrawerOpen(false);
         props.setIsSnackBarOpen(true);
-        props.setMessageSnackBar('The truck has been successfully saved');    
+        props.setMessageSnackBar('Item has been successfully saved');    
     };
     // **************************
 
@@ -147,7 +147,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
         props.setListTrucks(trucksList.GetList());
         storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
         props.setIsSnackBarOpen(true);
-        props.setMessageSnackBar('The machine has been successfully updated'); 
+        props.setMessageSnackBar('Item has been successfully updated'); 
 
     }
     // **************************
@@ -221,6 +221,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                             } 
                                         })}
                                         helperText={'Should be 3 letters + 3digits'}
+                                        inputProps={{ style: { textTransform: "uppercase" } }}
                                     />
                                     {errors.id && <div><small>{errors.id.message}</small></div>}
                                 </Box>

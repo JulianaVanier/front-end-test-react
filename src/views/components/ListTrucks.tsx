@@ -70,35 +70,15 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 
 
-	useEffect (() => {
-		if(props.deleteItemAlert===true){
+	useEffect(() => {
+		if (props.deleteItemAlert === true) {
 			handleDeleteItem(props.uniqueIdDelete)
 		}
 
 	}, [props.deleteItemAlert]);
 
 	// DELETE ITEM ******************
-	// const DeleteItem = async (unique_id: string) => {
-
-	// 	props.setuniqueIdDelete(unique_id);
-	// 	console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
-	// 	props.setOpenAlertDialog(true);
-
-	// 	console.log('props.deleteItemAlert', props.deleteItemAlert)
-
-	// 	if (props.deleteItemAlert === true) {
-	// 		console.log('delete Item alert', props.deleteItemAlert);
-
-	// 	await handleDeleteItem(props.uniqueIdDelete);
-
-	// 	props.setIsSnackBarOpen(true);
-	// 	props.setMessageSnackBar('The truck has been successfully deleted');
-	// 	}
-
-	// };
-
-
-	const DeleteItem = async (unique_id: string) => {
+		const DeleteItem = async (unique_id: string) => {
 
 		props.setuniqueIdDelete(unique_id);
 		console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
@@ -107,36 +87,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		console.log('props.deleteItemAlert', props.deleteItemAlert)
 
 
-		// if (props.deleteItemAlert === true) {
-		// 	console.log('props.deleteItemAlert inside condition before await', props.deleteItemAlert)
-
-		// 	await handleDeleteItem(props.uniqueIdDelete);
-		// 	props.setIsSnackBarOpen(true);
-		// 	props.setMessageSnackBar('The truck has been successfully deleted');
-
-		// }
-
-
-
-		// if (props.deleteItemAlert === true) {
-		// 	console.log('delete Item alert', props.deleteItemAlert);
-
-		// handleDeleteItem(props.uniqueIdDelete);
-
-		// props.setIsSnackBarOpen(true);
-		// props.setMessageSnackBar('The truck has been successfully deleted');
-		// }
-
 	};
-
-	// ******************
-	// const onDelete = (unique_id: string) => {
-	// 	console.log('unique_id', unique_id)
-	// 	uniqueIdDelete = unique_id;
-	// 	console.log('uniqueIdDelete', uniqueIdDelete)
-	// 	props.setOpenAlertDialog(true);
-
-	// };
 
 	const handleDeleteItem = async (unique_id: string) => {
 		console.log('unique_id inside handleDeleteItem', unique_id);
@@ -146,7 +97,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
 		props.setDeleteItemAlert(false);
 		props.setIsSnackBarOpen(true);
-		props.setMessageSnackBar('The truck has been successfully deleted');
+		props.setMessageSnackBar('Item has been successfully deleted');
 
 
 	};
@@ -173,23 +124,18 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{/* {props.listTrucks.map((item: Truck) => ( */}
 						{props.listTrucks.map((item: Truck) => (
 							<TableRow hover
 								key={item.unique_id}
-							// sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<StyledTableCell component="th" scope="row">
 									{item.make}
 								</StyledTableCell>
-								<StyledTableCell align="center">{item.id}</StyledTableCell>
+								<StyledTableCell align="center" sx={{textTransform:"uppercase"}}>{item.id}</StyledTableCell>
 								<StyledTableCell align="center">{item.isAvailable ? "Yes" : "No"}</StyledTableCell>
 								<StyledTableCell align="center">{item.purchaseDate}</StyledTableCell>
 								<StyledTableCell align="center">
 									<Stack spacing={2} direction="row" display='flex' justifyContent='flex-end' >
-										{/* <Button onClick={() => { EditItem(item); }}>Edit</Button>
-										<Button onClick={() => { DeleteItem(item.unique_id); }}>Delete</Button> */}
-
 										<IconButton aria-label="edit">
 											<ModeIcon onClick={() => { EditItem(item); }}></ModeIcon>
 										</IconButton>

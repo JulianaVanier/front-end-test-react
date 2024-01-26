@@ -26,8 +26,6 @@ export class TruckClass {
 
         const position: number = this._findInList(truck.unique_id);
 
-        console.log("positionnnnn", position);
-
         if (position === -1) {
             console.log(truck.unique_id, 'was not found');
             return;
