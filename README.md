@@ -29,8 +29,11 @@ Create a page to manage an inventory of heavy trucks used in a mine
 ## Screenshot
 
 List Trucks
+
 ![Project Image](/docs/front-end-react-list.png)
+
 Insert
+
 ![Project Image](/docs/front-end-react-insert.png)
 
 
