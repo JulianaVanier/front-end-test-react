@@ -25,12 +25,8 @@ import { styled } from '@mui/material/styles';
 type ServicesTrucksProps = {
 	listTrucks: Truck[],
 	setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
-	// editItem: (truck: Truck) => void
-	isSnackBarOpen: boolean,
 	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	messageSnackBar: string,
 	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
-	openAlertDialog: boolean,
 	setOpenAlertDialog: React.Dispatch<React.SetStateAction<boolean>>,
 	deleteItemAlert: boolean,
 	setDeleteItemAlert: React.Dispatch<React.SetStateAction<boolean>>,
@@ -59,16 +55,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
-
-	// const location = useLocation();
 	const navigate = useNavigate();
-	// const history = useHistory();
-
-
 	const trucksList: TruckClass = new TruckClass();
 	const storage: LocalStorageManager = new LocalStorageManager();
-
-
 
 	useEffect(() => {
 		if (props.deleteItemAlert === true) {
@@ -79,36 +68,29 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 	// DELETE ITEM ******************
 		const DeleteItem = async (unique_id: string) => {
-
 		props.setuniqueIdDelete(unique_id);
-		console.log('uniqueIdDelete inside function delete', props.uniqueIdDelete)
 		props.setOpenAlertDialog(true);
-
-		console.log('props.deleteItemAlert', props.deleteItemAlert)
-
-
 	};
 
 	const handleDeleteItem = async (unique_id: string) => {
-		console.log('unique_id inside handleDeleteItem', unique_id);
 		trucksList.SetList([...props.listTrucks]);
 		trucksList.RemoveTruck(unique_id);
+
 		props.setListTrucks(trucksList.GetList());
 		storage.SetLocalStorageFromArray("Trucks", trucksList.GetList());
+
 		props.setDeleteItemAlert(false);
+
 		props.setIsSnackBarOpen(true);
 		props.setMessageSnackBar('Item has been successfully deleted');
-
-
 	};
+	// ******************
 
 	// EDIT ITEM ******************
 	const EditItem = (truck: Truck) => {
 		navigate('/edit', { state: truck });
 	};
 	// ******************
-
-	// let uniqueIdDelete: string;
 
 	return (
 		<Box sx={{ width: "100%" }}>
@@ -117,7 +99,7 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 					<TableHead>
 						<TableRow>
 							<StyledTableCell align="center">Make</StyledTableCell>
-							<StyledTableCell align="center">Id</StyledTableCell>
+							<StyledTableCell align="center">ID</StyledTableCell>
 							<StyledTableCell align="center">Is Available</StyledTableCell>
 							<StyledTableCell align="center">Purchase Date</StyledTableCell>
 							<StyledTableCell align="center">Action</StyledTableCell>
@@ -139,7 +121,6 @@ const ListTrucks: React.FC<ServicesTrucksProps> = (props) => {
 										<IconButton aria-label="edit">
 											<ModeIcon onClick={() => { EditItem(item); }}></ModeIcon>
 										</IconButton>
-
 										<IconButton aria-label="delete">
 											<DeleteIcon onClick={() => {
 												DeleteItem(item.unique_id);

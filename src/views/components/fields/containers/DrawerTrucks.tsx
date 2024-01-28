@@ -8,9 +8,7 @@ import { useNavigate } from "react-router-dom";
 type ServicesTrucksProps = {
 	listTrucks: Truck[],
 	setListTrucks: React.Dispatch<React.SetStateAction<Truck[]>>,
-	isSnackBarOpen: boolean,
 	setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	messageSnackBar: string,
 	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>,
 }
 
@@ -54,9 +52,7 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 							listTrucks={props.listTrucks}
 							setListTrucks={props.setListTrucks}
 							setIsDrawerOpen={setIsDrawerOpen}
-							isSnackBarOpen={props.isSnackBarOpen}
 							setIsSnackBarOpen={props.setIsSnackBarOpen}
-							messageSnackBar={props.messageSnackBar}
 							setMessageSnackBar={props.setMessageSnackBar}
 						>
 						</TrucksDetailWrapper>

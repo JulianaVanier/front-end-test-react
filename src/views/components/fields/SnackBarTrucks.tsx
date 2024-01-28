@@ -6,8 +6,6 @@ type SnackBarTrucksProps = {
 	isSnackBarOpen: boolean
     setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>
     messageSnackBar: string,
-	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>
-
 }
 
 const anchor: SnackbarOrigin = {
