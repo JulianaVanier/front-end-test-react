@@ -184,7 +184,7 @@ const TrucksDetailWrapper: React.FC<ServicesTrucksProps> = (props) => {
                                 )}
                             />
                         </Box>
-                        <Divider sx={{ fontWeight: "bold", fontSize: 20, color: "grey" }}>
+                        <Divider sx={{ fontWeight: "bold", fontSize: 20, color: "grey", fontFamily: "sans-serif"}}>
                             Informations
                         </Divider>
                         <Grid container spacing={2} marginTop={"20px"}>

@@ -24,9 +24,7 @@ type Truck = {
 const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 
 	const navigate = useNavigate();
-
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
-
 
 	useEffect(() => {
 		if (location.pathname === '/edit') {
@@ -34,7 +32,6 @@ const DrawerTrucks: React.FC<ServicesTrucksProps> = (props) => {
 		}
 
 	}, []);
-
 
 	return (
 		<>

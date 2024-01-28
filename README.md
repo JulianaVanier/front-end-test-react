@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+# Front End Newtrax- React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## THE CHALLENGE
 
-Currently, two official plugins are available:
+Create a page to manage an inventory of heavy trucks used in a mine
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Data Requirements
 
-## Expanding the ESLint configuration
+- Make - is a select box with the following options: Belaz, Caterpillar, Komatsu
+- Id - is a textbox with the validation: maximum of 6 characters. 3 letter numbers. This is a license plate or some truck identification
+- Is available is a switch or checkbox that saves in boolean
+- Purchase date is a date picker. All trucks are newer than 2000
+- The list always stay visible. The form can slide from the right
+- Local storage to save data
+- Confirm box when deleting
+- Snackbar message when saving or deleting data
+- Responsiveness
+- Unit testing
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies
 
-- Configure the top-level `parserOptions` property like this:
+- React 18
+- Typescript
+- React Router Dom
+- React Hook Form
+- Material UI framework
+- Vitest (for testing)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Screenshot
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+List Trucks
+![Project Image](/docs/front-end-react-list.png)
+Insert
+![Project Image](/docs/front-end-react-insert.png)
+
+
+## Project setup
+
+```bash
+# clone this repository
+git clone https://github.com/JulianaVanier/front-end-test-react.git
+
+# navigate to the project directory
+cd your-repo
+
+# install dependencies
+npm install
+
+# run the application
+npm start

@@ -5,10 +5,10 @@ export default function HeaderTrucks() {
     <>
       <Typography
         variant="h5"
-        color="text.primary"
         sx={{
-          m: 4,
+          m: 2,
           padding: "0.7rem",
+          fontWeight: "bold", fontSize: 30, color: "grey", fontFamily: "sans-serif"
         }}
       >
         Front End Newtrax

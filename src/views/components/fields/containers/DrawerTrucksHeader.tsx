@@ -1,13 +1,10 @@
-import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 type DrawerTrucksHeaderProps = {
 	setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
-
-
 
 const DrawerTrucksHeader: React.FC<DrawerTrucksHeaderProps> = (props) => {
 	
